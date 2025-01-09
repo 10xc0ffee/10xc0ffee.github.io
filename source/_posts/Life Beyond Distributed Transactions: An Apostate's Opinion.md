@@ -1,4 +1,7 @@
-# NOTES - Life Beyond Distributed Transactions: An Apostate's Opinion
+---
+title: NOTES - Life Beyond Distributed Transactions: An Apostate's Opinion
+date: 2021-06-27 10:00:00
+---
 
 ## Problem Statement
 

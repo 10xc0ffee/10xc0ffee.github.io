@@ -1,4 +1,8 @@
-# RAFT 相关小问题
+---
+title: RAFT Notes
+date: 2018-04-21 10:00:00
+---
+
 
 ### Leader election 是如何进行的？
 
