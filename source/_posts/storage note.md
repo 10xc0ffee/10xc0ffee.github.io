@@ -52,15 +52,16 @@ Disks are the backbone of storage systems, and their configurations—such as HD
 Modern computer architecture relies heavily on a memory hierarchy. Efficient use of cache significantly affects performance. Cache misses introduce latency, making locality optimization critical. 
 
 **Types of Locality**:
-**Spatial Locality**: Improves by ensuring data close in memory is cached together.
-   - Larger cache sizes.
-   - Memory indexing structures for data continuity.
-   - Optimized binary layouts to improve instruction cache locality.
 
-**Temporal Locality**: Improves by reusing data or instructions over time.
-   - Prefetching techniques.
-   - Cache replacement algorithms.
-   - Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like **stagedDB** ensure proper context-switching within modules, even when cache capacity is limited.
+    **Spatial Locality**: Improves by ensuring data close in memory is cached together.
+    - Larger cache sizes.
+    - Memory indexing structures for data continuity.
+    - Optimized binary layouts to improve instruction cache locality.
+
+    **Temporal Locality**: Improves by reusing data or instructions over time.
+    - Prefetching techniques.
+    - Cache replacement algorithms.
+    - Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like **stagedDB** ensure proper context-switching within modules, even when cache capacity is limited.
 
 At the microarchitecture level, out-of-order processors help tolerate instruction misses by executing subsequent instructions. Many of these techniques rely on accurate prediction, which is constrained by unpredictable data sets and request patterns. However, good predictions can yield substantial performance benefits.
 

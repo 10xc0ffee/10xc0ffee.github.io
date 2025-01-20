@@ -17,7 +17,7 @@ This paper discussed a model/guideline for users to implement applications to de
 - Application developers write code that is scale-agnostic.
 - The infra provides multiple disjoint scopes of transaction serializability. (e.g single machine atomicity).
 - For messaging, most applications like to use (or the infra usually provides) at-least-once delivery, but still at-most-once acceptance.
- - Exactly once like TCP protocol works fine for temporary non-persist messages in a short-live process level. But with the need for data durability, clearly more complicated to implement (it's like implementing a long-lived version of TCP connection. Refer to [RIFL](https://web.stanford.edu/~ouster/cgi-bin/papers/rifl.pdf) to see an implementation example).
+- Exactly once like TCP protocol works fine for temporary non-persist messages in a short-live process level. But with the need for data durability, clearly more complicated to implement (it's like implementing a long-lived version of TCP connection. Refer to [RIFL](https://web.stanford.edu/~ouster/cgi-bin/papers/rifl.pdf) to see an implementation example).
 
 ## Pattern
 
