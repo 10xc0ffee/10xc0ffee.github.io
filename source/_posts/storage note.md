@@ -5,6 +5,8 @@ tags: [distributed system, storage]
 categories: [tech]
 ---
 
+
+
 ### Storage System Design Considerations
 
 A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical considerations: **Data Safety**, **Performance**, and **Availability**.
