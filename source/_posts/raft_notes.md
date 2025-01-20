@@ -2,6 +2,7 @@
 title: "RAFT Notes"
 date: 2018-04-21 10:00:00
 tags: [distributed system, consensus]
+categories: [tech]
 ---
 
 

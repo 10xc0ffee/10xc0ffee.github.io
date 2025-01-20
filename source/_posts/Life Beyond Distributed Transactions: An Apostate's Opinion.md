@@ -2,6 +2,7 @@
 title: "Note of Life Beyond Distributed Transactions"
 date: 2021-06-27 10:00:00
 tags: [distributed system]
+categories: [tech]
 ---
 
 ## Problem Statement

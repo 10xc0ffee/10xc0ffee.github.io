@@ -2,6 +2,7 @@
 title: "Storage Notes"
 date: 2016-06-25 10:00:00
 tags: [distributed system, storage]
+categories: [tech]
 ---
 
 ### Storage System Design Considerations

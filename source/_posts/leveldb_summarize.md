@@ -2,6 +2,7 @@
 title: "Leveldb Notes"
 date: 2018-07-16 10:00:00
 tags: [database, storage]
+categories: [tech]
 ---
 
 ### Leveldb 简介
