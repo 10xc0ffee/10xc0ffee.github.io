@@ -56,6 +56,15 @@
   </url>
   
   <url>
+    <loc>http://0xc0ffee.xyz/about/index.html</loc>
+    
+    <lastmod>2025-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://0xc0ffee.xyz/archives/index.html</loc>
     
     <lastmod>2025-01-20</lastmod>
@@ -67,16 +76,7 @@
   <url>
     <loc>http://0xc0ffee.xyz/2025/01/09/2025/</loc>
     
-    <lastmod>2025-01-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://0xc0ffee.xyz/about/index.html</loc>
-    
-    <lastmod>2025-01-09</lastmod>
+    <lastmod>2025-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

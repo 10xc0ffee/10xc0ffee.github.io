@@ -4,9 +4,9 @@ http://0xc0ffee.xyz/2016/06/25/storage%20note/
 http://0xc0ffee.xyz/2018/04/21/raft_notes/
 http://0xc0ffee.xyz/categories/index.html
 http://0xc0ffee.xyz/tags/index.html
+http://0xc0ffee.xyz/about/index.html
 http://0xc0ffee.xyz/archives/index.html
 http://0xc0ffee.xyz/2025/01/09/2025/
-http://0xc0ffee.xyz/about/index.html
 http://0xc0ffee.xyz/
 http://0xc0ffee.xyz/tags/distributed-system/
 http://0xc0ffee.xyz/tags/database/
