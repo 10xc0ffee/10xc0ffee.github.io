@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/2025/11/08/Neural%20Network%20and%20Deep%20Learning/</loc>
+    <loc>https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/</loc>
     
     <lastmod>2025-11-09</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/about/index.html</loc>
+    <loc>https://10xc0ffee.github.io/about/index.html</loc>
     
     <lastmod>2025-01-31</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/2021/06/27/Life%20Beyond%20Distributed%20Transactions:%20An%20Apostate's%20Opinion/</loc>
+    <loc>https://10xc0ffee.github.io/2021/06/27/Life%20Beyond%20Distributed%20Transactions:%20An%20Apostate's%20Opinion/</loc>
     
     <lastmod>2025-01-30</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/2016/06/25/storage%20note/</loc>
+    <loc>https://10xc0ffee.github.io/2016/06/25/storage%20note/</loc>
     
     <lastmod>2025-01-20</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/2018/07/16/leveldb_summarize/</loc>
+    <loc>https://10xc0ffee.github.io/2018/07/16/leveldb_summarize/</loc>
     
     <lastmod>2025-01-20</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/2018/04/21/raft_notes/</loc>
+    <loc>https://10xc0ffee.github.io/2018/04/21/raft_notes/</loc>
     
     <lastmod>2025-01-20</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/categories/index.html</loc>
+    <loc>https://10xc0ffee.github.io/categories/index.html</loc>
     
     <lastmod>2025-01-20</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/tags/index.html</loc>
+    <loc>https://10xc0ffee.github.io/tags/index.html</loc>
     
     <lastmod>2025-01-20</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/archives/index.html</loc>
+    <loc>https://10xc0ffee.github.io/archives/index.html</loc>
     
     <lastmod>2025-01-20</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/2025/01/09/2025/</loc>
+    <loc>https://10xc0ffee.github.io/2025/01/09/2025/</loc>
     
     <lastmod>2025-01-20</lastmod>
     
@@ -93,7 +93,7 @@
   
 
   <url>
-    <loc>https://10xc0ffee.github.io/project</loc>
+    <loc>https://10xc0ffee.github.io/</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -101,28 +101,28 @@
 
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/tags/distributed-system/</loc>
+    <loc>https://10xc0ffee.github.io/tags/distributed-system/</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/tags/database/</loc>
+    <loc>https://10xc0ffee.github.io/tags/database/</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/tags/storage/</loc>
+    <loc>https://10xc0ffee.github.io/tags/storage/</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/tags/consensus/</loc>
+    <loc>https://10xc0ffee.github.io/tags/consensus/</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -131,7 +131,7 @@
 
   
   <url>
-    <loc>https://10xc0ffee.github.io/project/categories/tech/</loc>
+    <loc>https://10xc0ffee.github.io/categories/tech/</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
