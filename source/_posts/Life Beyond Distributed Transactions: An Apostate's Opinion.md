@@ -1,5 +1,5 @@
 ---
-title: "Note of Life Beyond Distributed Transactions"
+title: "Note on Life Beyond Distributed Transactions"
 date: 2021-06-27 10:00:00
 tags: [distributed system]
 categories: [tech]
@@ -7,25 +7,25 @@ categories: [tech]
 
 ## Problem Statement
 
-Real-world application data grow fast. Those data will have to be repartitioned over time. Global serializability then becomes a problem. But user applications sometimes cannot get good performance by leveraging distributed transaction algorithms like 2PC (As mentioned by the Author in the year 2007).
-So user application usually implements their way to coordinate distributed procedures that fit their system.
-This paper discussed a model/guideline for users to implement applications to deal with data scaling challenges, and for infra developers to build new frameworks.
+Real-world application data grows fast. Those data will have to be repartitioned over time. Global serializability then becomes a problem. This introduces challenges in maintaining global serializability. However, user applications often struggle to achieve good performance using distributed transaction algorithms like 2PC (as noted by the author in 2007).
+
+As a result, user applications typically implement custom solutions to coordinate distributed procedures tailored to their systems. This paper discusses a model and guidelines for users to handle data scaling challenges and for infrastructure developers to design new frameworks.
 
 ## Assumption
 
-- Application data will grow fast. But the types of data is limited.
-- Application developers write code that is scale-agnostic.
-- The infra provides multiple disjoint scopes of transaction serializability. (e.g single machine atomicity).
-- For messaging, most applications like to use (or the infra usually provides) at-least-once delivery, but still at-most-once acceptance.
-- Exactly once like TCP protocol works fine for temporary non-persist messages in a short-live process level. But with the need for data durability, clearly more complicated to implement (it's like implementing a long-lived version of TCP connection. Refer to [RIFL](https://web.stanford.edu/~ouster/cgi-bin/papers/rifl.pdf) to see an implementation example).
+- Application data grows rapidly, but the types of data are limited.
+- Application developers write scale-agnostic code.
+- Infrastructure provides multiple disjoint scopes of transaction serializability (e.g., single-machine atomicity).
+- For messaging, most applications prefer (or infrastructure typically provides) at-least-once delivery but at-most-once acceptance.
+- Exactly-once semantics, akin to the TCP protocol, work well for temporary, non-persistent messages in short-lived processes. However, achieving exactly-once semantics for durable, long-lived messages is significantly more complex. Refer to [RIFL](https://web.stanford.edu/~ouster/cgi-bin/papers/rifl.pdf) to see an implementation example).
 
 ## Pattern
 
-With the above assumptions, the author provides the following design pattern of the scale-agnostic layer (a.k.a. application layer).
+Given these assumptions, the author proposes a design pattern for a scale-agnostic application layer.
 
 **Entity**
 
-Addressable user data type. Atomicity happens at this level. An application can address an entity by a unique key. The author emphasizes the secondary index and primary index referenced data usually belong to different entities due to performance issues (coordination cost).
+An entity is an addressable user data type where atomicity is maintained. Each entity can be identified by a unique key. The author emphasizes that data referenced by secondary and primary indices typically belong to different entities due to performance considerations (e.g., coordination costs).
 
 **Message**
 
@@ -45,9 +45,9 @@ Application business logic will be composited by different messages and related 
 
 ### My Thoughts
 
-In the year 2007, it is the time when NoSQL was rising. This paper provides a design pattern to implement complex business logic above a NoSQL database with single row atomicity. Even though, it is still complicated to implement such logic comparing to build it on a distributed RDMS. The application still needs to track/persist the activities and their states by itself, build a state machine to react to any activities' result, and handle all well-known failures in a distributed environment. I feel like it is tons of work.
+In 2007, when NoSQL databases were gaining traction, this paper provided a design pattern for implementing complex business logic atop NoSQL databases with single-row atomicity. However, implementing such logic remains more challenging compared to using distributed RDBMSs. Applications must handle activities and their states, build state machines to respond to activity outcomes, and address distributed failures—an inherently labor-intensive process.
 
-Notice that many assumptions of this paper are probably not the case in current 2021. We already have many products that support exactly-once-semantic messaging, global transactions, and so on. That will make application development easier.
+Many assumptions in this paper no longer hold in 2021. Today, we have robust solutions like exactly-once semantic messaging and global transactions, which simplify application development. Nevertheless, this pattern remains relevant in certain scenarios.
 
 But in certain areas, this pattern will still be useful.
 
