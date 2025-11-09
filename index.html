@@ -208,28 +208,63 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Recently I listened a few pod casts related to AI. One is about <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Even though the boss is trying to promote his company, the point about accelerated computing is already wide used and can potentially reshape the entire existing applications today that based on the general purpose computing makes sense to me. He also pointed the direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole software and hardware stack is being reshaped</a>. These all got me as an infra engineer. So I am planning to start a blog series to record my learning around machine learning, deep learning and AI stuff.</p>
+          <h2 id="Background">Background</h2>
+<p>Recently I listened a few pod casts related to AI. One is about <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Even though the boss is trying to promote his company, the point about accelerated computing is already wide used and can potentially reshape the entire existing applications today that based on the general purpose computing makes sense to me. He also pointed the direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole software and hardware stack is being reshaped</a>. These all got me as an infra engineer. So I am planning to start a blog series to record my learning around machine learning, deep learning and AI stuff.</p>
 <p>In this post, I describe the knowledge learned from <a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning">this Coursera course</a>. I find it is beginner friendly.</p>
-<h2 id="Math-Prerequisites"><a href="#Math-Prerequisites" class="headerlink" title="Math Prerequisites"></a>Math Prerequisites</h2><h4 id="Matrix-Dot-Multiplication"><a href="#Matrix-Dot-Multiplication" class="headerlink" title="Matrix Dot Multiplication"></a>Matrix Dot Multiplication</h4><p>Matrix dot multiplication (also known as matrix multiplication) is a fundamental operation in linear algebra where two matrices are combined to produce a new matrix. This operation is not element-wise; instead, it involves taking the dot product of rows from the first matrix with columns from the second matrix.</p>
-<p>For example, if we have a matrix ( A ) of shape ( (m, n) ) and a matrix ( B ) of shape ( (n, p) ), their dot product ( C &#x3D; A \cdot B ) will have shape ( (m, p) ):</p>
-<p>[<br>A &#x3D;<br>\begin{bmatrix}<br>a_{11} &amp; a_{12} \<br>a_{21} &amp; a_{22} \<br>\end{bmatrix},<br>\quad<br>B &#x3D;<br>\begin{bmatrix}<br>b_{11} \<br>b_{21} \<br>\end{bmatrix}<br>]</p>
+<h2 id="Math-Prerequisites">Math Prerequisites</h2>
+<h4 id="Matrix-Dot-Multiplication">Matrix Dot Multiplication</h4>
+<p>Matrix dot multiplication (also known as matrix multiplication) is a fundamental operation in linear algebra where two matrices are combined to produce a new matrix. This operation is not element-wise; instead, it involves taking the dot product of rows from the first matrix with columns from the second matrix.</p>
+<p>For example, if we have a matrix ( A ) of shape ( (m, n) ) and a matrix ( B ) of shape ( (n, p) ), their dot product ( C = A \cdot B ) will have shape ( (m, p) ):</p>
+<p>[<br>
+A =<br>
+\begin{bmatrix}<br>
+a_{11} &amp; a_{12} \<br>
+a_{21} &amp; a_{22} \<br>
+\end{bmatrix},<br>
+\quad<br>
+B =<br>
+\begin{bmatrix}<br>
+b_{11} \<br>
+b_{21} \<br>
+\end{bmatrix}<br>
+]</p>
 <p>The resulting matrix ( C ) is:</p>
-<p>[<br>C &#x3D; A \cdot B &#x3D;<br>\begin{bmatrix}<br>a_{11}b_{11} + a_{12}b_{21} \<br>a_{21}b_{11} + a_{22}b_{21} \<br>\end{bmatrix}<br>]</p>
+<p>[<br>
+C = A \cdot B =<br>
+\begin{bmatrix}<br>
+a_{11}b_{11} + a_{12}b_{21} \<br>
+a_{21}b_{11} + a_{22}b_{21} \<br>
+\end{bmatrix}<br>
+]</p>
 <p>This operation is widely used in neural networks, especially for computations in each layer.</p>
-<h4 id="First-Derivative-and-Second-Derivative"><a href="#First-Derivative-and-Second-Derivative" class="headerlink" title="First Derivative and Second Derivative"></a>First Derivative and Second Derivative</h4><p>The <strong>first derivative</strong> of a function measures the rate at which the function’s value changes as its input changes. In the context of neural networks and optimization, the first derivative helps us understand the <strong>slope</strong> (or gradient) of the loss function with respect to the model parameters. When we compute gradients during training, we are essentially finding the direction in which the function increases or decreases most rapidly.</p>
+<h4 id="First-Derivative-and-Second-Derivative">First Derivative and Second Derivative</h4>
+<p>The <strong>first derivative</strong> of a function measures the rate at which the function’s value changes as its input changes. In the context of neural networks and optimization, the first derivative helps us understand the <strong>slope</strong> (or gradient) of the loss function with respect to the model parameters. When we compute gradients during training, we are essentially finding the direction in which the function increases or decreases most rapidly.</p>
 <p>The <strong>second derivative</strong>, on the other hand, measures how the rate of change itself changes—i.e., it gives us information about the <strong>curvature</strong> of the function. A positive second derivative indicates that the function is curving upwards (convex), while a negative value indicates it’s curving downwards (concave).</p>
-<h4 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h4><p><strong>Gradient descent</strong> is an optimization algorithm used to minimize the loss function in machine learning. It works by iteratively moving the model parameters in the direction opposite to the gradient of the loss function (since this is the direction of steepest decrease). Specifically, we update each parameter ( \theta ) by:</p>
-<p>[<br>\theta :&#x3D; \theta - \alpha \frac{\partial J}{\partial \theta}<br>]</p>
+<h4 id="Gradient-Descent">Gradient Descent</h4>
+<p><strong>Gradient descent</strong> is an optimization algorithm used to minimize the loss function in machine learning. It works by iteratively moving the model parameters in the direction opposite to the gradient of the loss function (since this is the direction of steepest decrease). Specifically, we update each parameter ( \theta ) by:</p>
+<p>[<br>
+\theta := \theta - \alpha \frac{\partial J}{\partial \theta}<br>
+]</p>
 <p>where ( \alpha ) is the <strong>learning rate</strong>, and ( \frac{\partial J}{\partial \theta} ) is the gradient of the loss function ( J ) with respect to ( \theta ).</p>
-<h4 id="Second-Derivative’s-Role-in-Gradient-Descent"><a href="#Second-Derivative’s-Role-in-Gradient-Descent" class="headerlink" title="Second Derivative’s Role in Gradient Descent"></a>Second Derivative’s Role in Gradient Descent</h4><p>The second derivative is important for understanding the nature of the critical points we find using gradient descent:</p>
+<h4 id="Second-Derivative’s-Role-in-Gradient-Descent">Second Derivative’s Role in Gradient Descent</h4>
+<p>The second derivative is important for understanding the nature of the critical points we find using gradient descent:</p>
 <ul>
 <li>If the <strong>second derivative is a positive constant</strong>, it means the function is <strong>convex</strong> everywhere (like a parabola opening upwards). Gradient descent will be guaranteed to find the <strong>global minimum</strong>.</li>
 <li>If the <strong>second derivative is a negative constant</strong>, the function is <strong>concave</strong> everywhere, and gradient descent would find the global maximum.</li>
 <li>However, if the <strong>second derivative varies</strong> (is not constant), the function can have multiple local minima and maxima (local extreme values). In such cases, gradient descent might only find a <strong>local minimum or maximum</strong>, depending on the starting point.</li>
 </ul>
 <p>This is why the loss landscapes in deep learning are often tricky—the presence of many local extremes due to the non-constant curvature, as indicated by the second derivatives.</p>
-<h2 id="Neural-Network-Introduction"><a href="#Neural-Network-Introduction" class="headerlink" title="Neural Network Introduction"></a>Neural Network Introduction</h2><p>Logistic Regression is a well-known</p>
-<h2 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h2><h3 id="Notations"><a href="#Notations" class="headerlink" title="Notations"></a>Notations</h3><h3 id="Activation-Function"><a href="#Activation-Function" class="headerlink" title="Activation Function"></a>Activation Function</h3><h3 id="Loss-Function"><a href="#Loss-Function" class="headerlink" title="Loss Function"></a>Loss Function</h3><h3 id="Forward-Propogation"><a href="#Forward-Propogation" class="headerlink" title="Forward Propogation"></a>Forward Propogation</h3><h3 id="Backward-Propogation"><a href="#Backward-Propogation" class="headerlink" title="Backward Propogation"></a>Backward Propogation</h3><h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><h3 id="Inferencing"><a href="#Inferencing" class="headerlink" title="Inferencing"></a>Inferencing</h3>
+<h2 id="Neural-Network-Introduction">Neural Network Introduction</h2>
+<p>Logistic Regression is a well-known</p>
+<h2 id="Neural-Network">Neural Network</h2>
+<h3 id="Notations">Notations</h3>
+<h3 id="Activation-Function">Activation Function</h3>
+<h3 id="Loss-Function">Loss Function</h3>
+<h3 id="Forward-Propogation">Forward Propogation</h3>
+<h3 id="Backward-Propogation">Backward Propogation</h3>
+<h3 id="Training">Training</h3>
+<h3 id="Inferencing">Inferencing</h3>
+
       
     </div>
 
@@ -306,28 +341,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h2><p>Real-world application data grows fast. Those data will have to be repartitioned over time. Global serializability then becomes a problem. This introduces challenges in maintaining global serializability. However, user applications often struggle to achieve good performance using distributed transaction algorithms like 2PC (as noted by the author in 2007).</p>
+          <h2 id="Problem-Statement">Problem Statement</h2>
+<p>Real-world application data grows fast. Those data will have to be repartitioned over time. Global serializability then becomes a problem. This introduces challenges in maintaining global serializability. However, user applications often struggle to achieve good performance using distributed transaction algorithms like 2PC (as noted by the author in 2007).</p>
 <p>As a result, user applications typically implement custom solutions to coordinate distributed procedures tailored to their systems. This paper discusses a model and guidelines for users to handle data scaling challenges and for infrastructure developers to design new frameworks.</p>
-<h2 id="Assumption"><a href="#Assumption" class="headerlink" title="Assumption"></a>Assumption</h2><ul>
+<h2 id="Assumption">Assumption</h2>
+<ul>
 <li>Application data grows rapidly, but the types of data are limited.</li>
 <li>Application developers write scale-agnostic code.</li>
 <li>Infrastructure provides multiple disjoint scopes of transaction serializability (e.g., single-machine atomicity).</li>
 <li>For messaging, most applications prefer (or infrastructure typically provides) at-least-once delivery but at-most-once acceptance.</li>
 <li>Exactly-once semantics, akin to the TCP protocol, work well for temporary, non-persistent messages in short-lived processes. However, achieving exactly-once semantics for durable, long-lived messages is significantly more complex. Refer to <a target="_blank" rel="noopener" href="https://web.stanford.edu/~ouster/cgi-bin/papers/rifl.pdf">RIFL</a> to see an implementation example).</li>
 </ul>
-<h2 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h2><p>Given these assumptions, the author proposes a design pattern for a scale-agnostic application layer.</p>
+<h2 id="Pattern">Pattern</h2>
+<p>Given these assumptions, the author proposes a design pattern for a scale-agnostic application layer.</p>
 <p><strong>Entity</strong></p>
 <p>An entity is an addressable user data type where atomicity is maintained. Each entity can be identified by a unique key. The author emphasizes that data referenced by secondary and primary indices typically belong to different entities due to performance considerations (e.g., coordination costs).</p>
 <p><strong>Message</strong></p>
-<p>The message is used to communicate across entities. When the update of entity A and the update of entity B are related (e.g. causality), there will be messages between A to B.<br>Messaging from entity A to entity B should be outside the transaction of either entity A or B. (For example, a user submits an order. The application updates the order table row A.<br>If that succeeds, then it needs to modify the balance table row B to charge the user. That may require a message that relates A to B. The messaging procedure should be outside transaction of A to prevent B receives the message before the transaction of A is committed).</p>
+<p>The message is used to communicate across entities. When the update of entity A and the update of entity B are related (e.g. causality), there will be messages between A to B.<br>
+Messaging from entity A to entity B should be outside the transaction of either entity A or B. (For example, a user submits an order. The application updates the order table row A.<br>
+If that succeeds, then it needs to modify the balance table row B to charge the user. That may require a message that relates A to B. The messaging procedure should be outside transaction of A to prevent B receives the message before the transaction of A is committed).</p>
 <p><strong>Activity</strong></p>
-<p>The effect of a Message must be idempotent under the assumption of at-least-once-delivery. So the downstream entity needs to maintain some <strong>state</strong> to track those messages. That state is a part of an activity. An application can define more relationships (i.e. activities) between the two entities.<br>The author thinks if there is messaging between two entities, there should be an activity tracking these two entities. Under the assumption of limited user data types, the number of activities is also limited. So with this pattern, it doesn’t mean application developers have to write a lot of code.<br>Another important state of the activity is the <strong>uncertainty</strong>. For example, we are going to charge the bank account, but before we do that we don’t know how much money is in the account. That is uncertainty. The activity needs to save the state of uncertainty. The goal is to resolve the uncertainty. Considering if we are implementing a distributed transaction, normally the uncertainty is resolved along with the “locking”, either pessimistic or optimistic. At the user application level, we track them as tentative operations, confirmations (like transaction committed), and cancellations (like transaction aborted).</p>
+<p>The effect of a Message must be idempotent under the assumption of at-least-once-delivery. So the downstream entity needs to maintain some <strong>state</strong> to track those messages. That state is a part of an activity. An application can define more relationships (i.e. activities) between the two entities.<br>
+The author thinks if there is messaging between two entities, there should be an activity tracking these two entities. Under the assumption of limited user data types, the number of activities is also limited. So with this pattern, it doesn’t mean application developers have to write a lot of code.<br>
+Another important state of the activity is the <strong>uncertainty</strong>. For example, we are going to charge the bank account, but before we do that we don’t know how much money is in the account. That is uncertainty. The activity needs to save the state of uncertainty. The goal is to resolve the uncertainty. Considering if we are implementing a distributed transaction, normally the uncertainty is resolved along with the “locking”, either pessimistic or optimistic. At the user application level, we track them as tentative operations, confirmations (like transaction committed), and cancellations (like transaction aborted).</p>
 <p><strong>Workflow</strong></p>
 <p>Application business logic will be composited by different messages and related activities (which are like building blocks).</p>
-<h3 id="My-Thoughts"><a href="#My-Thoughts" class="headerlink" title="My Thoughts"></a>My Thoughts</h3><p>In 2007, when NoSQL databases were gaining traction, this paper provided a design pattern for implementing complex business logic atop NoSQL databases with single-row atomicity. However, implementing such logic remains more challenging compared to using distributed RDBMSs. Applications must handle activities and their states, build state machines to respond to activity outcomes, and address distributed failures—an inherently labor-intensive process.</p>
+<h3 id="My-Thoughts">My Thoughts</h3>
+<p>In 2007, when NoSQL databases were gaining traction, this paper provided a design pattern for implementing complex business logic atop NoSQL databases with single-row atomicity. However, implementing such logic remains more challenging compared to using distributed RDBMSs. Applications must handle activities and their states, build state machines to respond to activity outcomes, and address distributed failures—an inherently labor-intensive process.</p>
 <p>Many assumptions in this paper no longer hold in 2021. Today, we have robust solutions like exactly-once semantic messaging and global transactions, which simplify application development. Nevertheless, this pattern remains relevant in certain scenarios.</p>
 <p>But in certain areas, this pattern will still be useful.</p>
-<p>The first use case I can think of is when the workflow is accessing multiple services&#x2F;databases. And only accessing a single service supports the atomicity. In some real-world business logics, a human can be an entity as well and can be involved in the workflow (The human interaction will usually take a very long time to process). So you have to break a global transaction into smaller transactions. I came across [7 Use Cases in 7 Minutes Each] (<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=sXGlQruUrWE">https://www.youtube.com/watch?v=sXGlQruUrWE</a>), which talks about the real use cases by using AWS SWF. AWS SWF has many similar ideas and abstractions to help application developers focus on the business logic, without worrying about workload scaling (not data scaling) and distributed failures. SWF has the concept of activity worker and workflow worker, where the activity is like a simple step of business logic, the workflow is like a decision-maker&#x2F;coordinator of different activities’ execution. Application developers just need to break the business logic into activities and workflows. All other messaging, state durability, and distributed failures are handled by SWF.</p>
+<p>The first use case I can think of is when the workflow is accessing multiple services/databases. And only accessing a single service supports the atomicity. In some real-world business logics, a human can be an entity as well and can be involved in the workflow (The human interaction will usually take a very long time to process). So you have to break a global transaction into smaller transactions. I came across [7 Use Cases in 7 Minutes Each] (<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=sXGlQruUrWE">https://www.youtube.com/watch?v=sXGlQruUrWE</a>), which talks about the real use cases by using AWS SWF. AWS SWF has many similar ideas and abstractions to help application developers focus on the business logic, without worrying about workload scaling (not data scaling) and distributed failures. SWF has the concept of activity worker and workflow worker, where the activity is like a simple step of business logic, the workflow is like a decision-maker/coordinator of different activities’ execution. Application developers just need to break the business logic into activities and workflows. All other messaging, state durability, and distributed failures are handled by SWF.</p>
 
       
     </div>
@@ -405,12 +448,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Leveldb-简介"><a href="#Leveldb-简介" class="headerlink" title="Leveldb 简介"></a>Leveldb 简介</h3><p>Leveldb是一个单机key-value数据库library。Comparator，filter，cache，以及各种性能相关的参数都可以在创建DB的时候由参数传入。基于LSM，leveldb倾向于优化写请求，更适合写请求远大于读请求的负载。</p>
-<h3 id="Leveldb-架构"><a href="#Leveldb-架构" class="headerlink" title="Leveldb 架构"></a>Leveldb 架构</h3><p>|&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;DB&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;|</p>
-<p>|&#x3D;&#x3D;&#x3D;&#x3D;VersionSet&#x3D;&#x3D;&#x3D;&#x3D;|</p>
-<p>|&#x3D;&#x3D;&#x3D;&#x3D;CurVersion&#x3D;&#x3D;&#x3D;&#x3D;||&#x3D;&#x3D;&#x3D;&#x3D;MemTable&#x3D;&#x3D;&#x3D;&#x3D;||&#x3D;&#x3D;&#x3D;&#x3D;ImmTable&#x3D;&#x3D;&#x3D;&#x3D;||&#x3D;&#x3D;&#x3D;&#x3D;WAL&#x3D;&#x3D;&#x3D;&#x3D;|</p>
-<p>|&#x3D;&#x3D;&#x3D;&#x3D;TableCache&#x3D;&#x3D;&#x3D;&#x3D;||&#x3D;&#x3D;&#x3D;&#x3D;BlockCache&#x3D;&#x3D;&#x3D;&#x3D;|</p>
-<p>|&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;Disk&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;|</p>
+          <h3 id="Leveldb-简介">Leveldb 简介</h3>
+<p>Leveldb是一个单机key-value数据库library。Comparator，filter，cache，以及各种性能相关的参数都可以在创建DB的时候由参数传入。基于LSM，leveldb倾向于优化写请求，更适合写请求远大于读请求的负载。</p>
+<h3 id="Leveldb-架构">Leveldb 架构</h3>
+<p>|==============================DB==============================|</p>
+<p>|====VersionSet====|</p>
+<p>|====CurVersion====||====MemTable====||====ImmTable====||====WAL====|</p>
+<p>|====TableCache====||====BlockCache====|</p>
+<p>|=============================Disk=============================|</p>
 <p>Leveldb架构如上，由五六个重要的数据结构组成。DB提供用户接口，所有的存在Snapshot，Read，Write，Delete，Iterate对外接口都在这层提供。VersionSet追踪了所有SSTable的历史变动。CurVersion包含当前SSTable的索引，所有读操作访问table cache都要先经过它来定位SSTable。WAL记录写操作的oplog。MemTable使用跳表提供了快速写和无锁读特性。TableCache默认使用LRU将SSTable映射到内存中，提供快速的查找和遍历。</p>
 <p>其中最中间的这层构成了整个数据库当前的视图。对于Leveldb的三种operations：</p>
 <ul>
@@ -418,24 +463,32 @@
 <li>Read主要涉及MemTable和ImmTable的get，以及CurVersion的table find和TableCache的get</li>
 <li>Compaction主要涉及ImmTable的serialize或SSTables的多路归并，和VersionSet的meta change</li>
 </ul>
-<h3 id="Writes-in-leveldb"><a href="#Writes-in-leveldb" class="headerlink" title="Writes in leveldb"></a>Writes in leveldb</h3><p>Leveldb的写操作包括Upsert和Delete两种类型。和其他log系统一样，写操作将操作（WriteBatch）写到log file之后就返回用户成功。后台的Compaction task负责Immtable持久化和多sstable的归并。数据同时会在内存以跳表的形式存在。</p>
+<h3 id="Writes-in-leveldb">Writes in leveldb</h3>
+<p>Leveldb的写操作包括Upsert和Delete两种类型。和其他log系统一样，写操作将操作（WriteBatch）写到log file之后就返回用户成功。后台的Compaction task负责Immtable持久化和多sstable的归并。数据同时会在内存以跳表的形式存在。</p>
 <p>前台写WriteBatch会被加入FIFO，队首所在用户线程负责batch这些写请求，并通过notify其他用户线程同一批落盘的写请求的完成。这种做法降低了写请求的平均等待时间，原因如下，</p>
 <ul>
 <li>每次只有一个线程在写log file，这个过程不需要加锁，给新的Write请求进入队列的空隙。</li>
 <li>batch write对于较小的log record连续append来说，更给有利于提高磁盘吞吐。</li>
 </ul>
 <p>后台Compaction对前台写有负反馈。为了保证memtable的性能，其占用内存是有软硬threshold的。当达到软threshold的时候，前台写会sleep 1秒, 以让出CPU等待immtable的Compaction。这种思路有利于避免长尾。</p>
-<h3 id="Compaction-策略"><a href="#Compaction-策略" class="headerlink" title="Compaction 策略"></a>Compaction 策略</h3><p>粗略的想来，Compaction策略要能优化下面几点，</p>
+<h3 id="Compaction-策略">Compaction 策略</h3>
+<p>粗略的想来，Compaction策略要能优化下面几点，</p>
 <ul>
 <li>Compaction的触发时机要均匀，以均摊磁盘IO，减少对前台的影响。</li>
 <li>Compaction要减少上下层间的overlapp，减少对Read操作的影响。</li>
 </ul>
 <p>另外leveldb LSM，level越高允许的文件越多，应该是隐含了倾向于越新写的越应该置于能快速访问到的位置（可以想一下KV插入越早，其所在的层久越高，也越高概率和低层有overlap）。</p>
 <p>Compaction策略每一家都不一样，这部分我没怎么看懂，进一步理解需要研究下测试方法和有没有数学形式的分析。</p>
-<h3 id="Reads-in-leveldb"><a href="#Reads-in-leveldb" class="headerlink" title="Reads in leveldb"></a>Reads in leveldb</h3><p>Leveldb中的读是snapshot读。最长的读路径需要经过Memtable-&gt;ImmTable-&gt;CurVersion SSTables。每个Version视图保留了每层的SSTable Key Range，通过二分查找可以定位出Key可能所在的SSTable。之后Leveldb的做法是通过VersionSet中的TableCache的Get接口去拿到value，顺便加入新的TableCache和BlockCache Entry if possible。</p>
-<h3 id="Snapshot-实现"><a href="#Snapshot-实现" class="headerlink" title="Snapshot 实现"></a>Snapshot 实现</h3><p>Leveldb支持MVCC，对外可以提供snapshot isolation。其中Version即是写请求产生的Sequence Id。用户在DB的生命周期内创建了某个SeqId的snapshot，对于DB来说，仅代表Compaction不会merge并删除该SeqId之后的sstable。</p>
-<h3 id="关于Leveldb-数据安全"><a href="#关于Leveldb-数据安全" class="headerlink" title="关于Leveldb 数据安全"></a>关于Leveldb 数据安全</h3><p>涉及fdatasync和fsync的使用。POSIX说fdatasync会sync和fd相关的data和保证数据准确性的meta。我发现Leveldb使用的是fdatasync if possible。<br>要注意SyncDirIfManifest，Manifest 文件持久化了新加入的sstable并去除了多余的sstable，为了保证Manifest的data sync完成后其中记录的sstable都存在，需要在之前调用父目录的fdatasync。<br>另外unlink和rename在filesystem层不一定保序，这导致需要SetCurrentManifest在rename之后调用SyncDirIfManifest，防止redundant的sstable被删除而Manifest却没更新。</p>
-<h3 id="Leveldb代码"><a href="#Leveldb代码" class="headerlink" title="Leveldb代码"></a>Leveldb代码</h3><p>Leveldb的代码比较容易理解，特别是几个抽象Memtable, VersionSets, Version, Iterator, 使整个架构很清晰。对函数调用前置条件的注释和Assertion很值得借鉴。</p>
+<h3 id="Reads-in-leveldb">Reads in leveldb</h3>
+<p>Leveldb中的读是snapshot读。最长的读路径需要经过Memtable-&gt;ImmTable-&gt;CurVersion SSTables。每个Version视图保留了每层的SSTable Key Range，通过二分查找可以定位出Key可能所在的SSTable。之后Leveldb的做法是通过VersionSet中的TableCache的Get接口去拿到value，顺便加入新的TableCache和BlockCache Entry if possible。</p>
+<h3 id="Snapshot-实现">Snapshot 实现</h3>
+<p>Leveldb支持MVCC，对外可以提供snapshot isolation。其中Version即是写请求产生的Sequence Id。用户在DB的生命周期内创建了某个SeqId的snapshot，对于DB来说，仅代表Compaction不会merge并删除该SeqId之后的sstable。</p>
+<h3 id="关于Leveldb-数据安全">关于Leveldb 数据安全</h3>
+<p>涉及fdatasync和fsync的使用。POSIX说fdatasync会sync和fd相关的data和保证数据准确性的meta。我发现Leveldb使用的是fdatasync if possible。<br>
+要注意SyncDirIfManifest，Manifest 文件持久化了新加入的sstable并去除了多余的sstable，为了保证Manifest的data sync完成后其中记录的sstable都存在，需要在之前调用父目录的fdatasync。<br>
+另外unlink和rename在filesystem层不一定保序，这导致需要SetCurrentManifest在rename之后调用SyncDirIfManifest，防止redundant的sstable被删除而Manifest却没更新。</p>
+<h3 id="Leveldb代码">Leveldb代码</h3>
+<p>Leveldb的代码比较容易理解，特别是几个抽象Memtable, VersionSets, Version, Iterator, 使整个架构很清晰。对函数调用前置条件的注释和Assertion很值得借鉴。</p>
 <p>不好阅读的地方也有。VersionSets和CurrentVersion，TableCache的互相引用，DB Mutex作为参数横跨很长的调用链。这些导致我对一些细节没法很清晰的察觉，需要进一步熟悉代码才行。</p>
 
       
@@ -514,24 +567,29 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Leader-election-是如何进行的？"><a href="#Leader-election-是如何进行的？" class="headerlink" title="Leader election 是如何进行的？"></a>Leader election 是如何进行的？</h3><p>raft的leader election阶段类似使用paxos算法谋求一个共同的值(leader)。大致阶段如下：</p>
+          <h3 id="Leader-election-是如何进行的？">Leader election 是如何进行的？</h3>
+<p>raft的leader election阶段类似使用paxos算法谋求一个共同的值(leader)。大致阶段如下：</p>
 <ol>
 <li>每个Proposer初始得到一个election timeout。这个election timeout是在一个范围内随机的。</li>
 <li>若max election timeout超时未收到其他proposal，则向quorum发布leader是自己的proposal。</li>
 <li>若得到majority acceptor认可，则成为leader。</li>
 </ol>
 <p>每个proposal都附带一个sequence number，在raft中称为term。term标志新一轮election的产生。算法允许不同proposer使用相同term propose the leader。</p>
-<h3 id="为什么所有写操作（包括leader-election）都是majority-based？"><a href="#为什么所有写操作（包括leader-election）都是majority-based？" class="headerlink" title="为什么所有写操作（包括leader election）都是majority based？"></a>为什么所有写操作（包括leader election）都是majority based？</h3><p>A majority got newest value &#x3D;&gt; any majority group contains the newest value &#x3D;&gt; some minority group don’t have the newest value</p>
+<h3 id="为什么所有写操作（包括leader-election）都是majority-based？">为什么所有写操作（包括leader election）都是majority based？</h3>
+<p>A majority got newest value =&gt; any majority group contains the newest value =&gt; some minority group don’t have the newest value</p>
 <p>Then we can choose to stop the service when there are only minority accessible. In the other hand, service can be online only when there are majoirty cab be accessible. That’s basically pigenon hole principle.</p>
 <p>由于我们没法知道全局中有哪些replica含有最新的数据，是否能做leader都是通过比较判断的。如果我们有全局的信息实时记录谁有最新的数据，我们就能打破majority的限制。一些基于failure detector的协议就是这么做的。</p>
-<h3 id="如何保证leader的uniqueness"><a href="#如何保证leader的uniqueness" class="headerlink" title="如何保证leader的uniqueness"></a>如何保证leader的uniqueness</h3><p>raft算法本身并不维护leader的唯一。raft只维护在相同term下只会产生一个leader。所以算法是会出现同时存在多个replica认为自己是leader的情况。</p>
+<h3 id="如何保证leader的uniqueness">如何保证leader的uniqueness</h3>
+<p>raft算法本身并不维护leader的唯一。raft只维护在相同term下只会产生一个leader。所以算法是会出现同时存在多个replica认为自己是leader的情况。</p>
 <ul>
 <li>对于写请求，由于只有newest term leader拥有majority的ISR，所以写请求只会在这个leader上成功。</li>
 <li>对于读请求，可能读到旧值。</li>
 </ul>
 <p>整体上基本的raft算法能提供sequential consistency，却达不到linearizability。对于有些需求外部时间或者因果一致的应用，有的会增加了lease保证leader的uniqueness，有的在读请求上做文章，保证读的时候还是leader否则读失败。但是有得必有失，这种extension增加了算法对时间的依赖，即分布式环境中time drift对应用的影响。</p>
-<h3 id="新上任的Leader什么时候可以对外服务？"><a href="#新上任的Leader什么时候可以对外服务？" class="headerlink" title="新上任的Leader什么时候可以对外服务？"></a>新上任的Leader什么时候可以对外服务？</h3><p>在raft中，成为leader并不意味这你确定所有数据已经commit，只能确定committed数据和最新数据（to-commit数据）是你的数据的子集。所以raft中新leader不能直接服务，需要经过数轮AppendEntries commit一个当前term的占位entry才行 （我有个疑问为什么必须提交一个真实的当前term的dummy entry。空的AppendEntries作为心跳也可以把之前lag的entries同步吧？虽然这样有违raft commit的原则，但是我觉得这个时候这些previous term的entries是可以commit的了）。</p>
-<h3 id="谁可以commit数据？"><a href="#谁可以commit数据？" class="headerlink" title="谁可以commit数据？"></a>谁可以commit数据？</h3><p>Leader可以commit数据，不仅仅是leader with newest term。old leader可能会commit数据并告知clients。raft保证old leader的后继leader肯定会commit一遍同样的entries。最新leader也同样包含相同的entries。</p>
+<h3 id="新上任的Leader什么时候可以对外服务？">新上任的Leader什么时候可以对外服务？</h3>
+<p>在raft中，成为leader并不意味这你确定所有数据已经commit，只能确定committed数据和最新数据（to-commit数据）是你的数据的子集。所以raft中新leader不能直接服务，需要经过数轮AppendEntries commit一个当前term的占位entry才行 （我有个疑问为什么必须提交一个真实的当前term的dummy entry。空的AppendEntries作为心跳也可以把之前lag的entries同步吧？虽然这样有违raft commit的原则，但是我觉得这个时候这些previous term的entries是可以commit的了）。</p>
+<h3 id="谁可以commit数据？">谁可以commit数据？</h3>
+<p>Leader可以commit数据，不仅仅是leader with newest term。old leader可能会commit数据并告知clients。raft保证old leader的后继leader肯定会commit一遍同样的entries。最新leader也同样包含相同的entries。</p>
 
       
     </div>
@@ -609,12 +667,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Storage-System-Design-Considerations"><a href="#Storage-System-Design-Considerations" class="headerlink" title="Storage System Design Considerations"></a>Storage System Design Considerations</h3><p>A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical considerations: <strong>Data Safety</strong>, <strong>Performance</strong>, and <strong>Availability</strong>.</p>
-<h4 id="Data-Safety"><a href="#Data-Safety" class="headerlink" title="Data Safety"></a>Data Safety</h4><p>Data safety is the most important aspect in most scenarios. The system must make every effort to protect user data, as any loss of data is unacceptable.</p>
-<h4 id="Availability"><a href="#Availability" class="headerlink" title="Availability"></a>Availability</h4><p>While availability may not always be an immediate concern, it remains essential for system stability. In modern storage systems, data is typically replicated across multiple nodes. If one node becomes unavailable, other nodes can handle requests. However, poor availability can lead to system instability, manifesting as increased latency or reduced throughput when alternate nodes are used.</p>
+          <h3 id="Storage-System-Design-Considerations">Storage System Design Considerations</h3>
+<p>A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical considerations: <strong>Data Safety</strong>, <strong>Performance</strong>, and <strong>Availability</strong>.</p>
+<h4 id="Data-Safety">Data Safety</h4>
+<p>Data safety is the most important aspect in most scenarios. The system must make every effort to protect user data, as any loss of data is unacceptable.</p>
+<h4 id="Availability">Availability</h4>
+<p>While availability may not always be an immediate concern, it remains essential for system stability. In modern storage systems, data is typically replicated across multiple nodes. If one node becomes unavailable, other nodes can handle requests. However, poor availability can lead to system instability, manifesting as increased latency or reduced throughput when alternate nodes are used.</p>
 <p>One of the key factors affecting availability is the speed of stopping and restarting nodes, which impacts how quickly the system can recover from failures.</p>
-<h4 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h4><p>Performance is typically measured in two dimensions: <strong>latency</strong> (how quickly a system responds) and <strong>throughput</strong> (the amount of data the system processes). Performance is the second most important consideration and is influenced by data safety and availability. Optimizing performance requires careful design choices, ranging from hardware selection to user requirements.</p>
-<h5 id="Network-Interface-Card-NIC"><a href="#Network-Interface-Card-NIC" class="headerlink" title="Network Interface Card (NIC)"></a>Network Interface Card (NIC)</h5><p>The NIC is a crucial determinant of network speed, with options like 1-Gb, 10-Gb, and Infiniband affecting overall system performance. For example, with 1-Gb NICs, two approaches are commonly used for replicating data to ensure safety:</p>
+<h4 id="Performance">Performance</h4>
+<p>Performance is typically measured in two dimensions: <strong>latency</strong> (how quickly a system responds) and <strong>throughput</strong> (the amount of data the system processes). Performance is the second most important consideration and is influenced by data safety and availability. Optimizing performance requires careful design choices, ranging from hardware selection to user requirements.</p>
+<h5 id="Network-Interface-Card-NIC">Network Interface Card (NIC)</h5>
+<p>The NIC is a crucial determinant of network speed, with options like 1-Gb, 10-Gb, and Infiniband affecting overall system performance. For example, with 1-Gb NICs, two approaches are commonly used for replicating data to ensure safety:</p>
 <ol>
 <li><strong>Star-Write</strong>: Sends all three replicas simultaneously from one node to others. This approach minimizes latency but can saturate the client’s bandwidth, reducing throughput.</li>
 <li><strong>Chain-Write</strong>: Sends the first replica to one node, which then forwards it to others. This approach maximizes throughput by utilizing bandwidth across multiple nodes, but it introduces higher latency due to forwarding delays.</li>
@@ -625,8 +688,10 @@
 <li><strong>Commit phase</strong>: Ensures data integrity while balancing throughput and latency.</li>
 </ul>
 <p>With the widespread adoption of 10-Gb NICs, Star-Write can now achieve both low latency and high throughput, especially when integrated with a two-phase commit model.</p>
-<h5 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h5><p>Disks are the backbone of storage systems, and their configurations—such as HDD, SSD, SAS, RAID, and combinations—can significantly influence design and performance. Each choice has trade-offs in cost, speed, and durability.</p>
-<h5 id="Memory-Hierarchy"><a href="#Memory-Hierarchy" class="headerlink" title="Memory Hierarchy"></a>Memory Hierarchy</h5><p>Modern computer architecture relies heavily on a memory hierarchy. Efficient use of cache significantly affects performance. Cache misses introduce latency, making locality optimization critical. </p>
+<h5 id="Disk">Disk</h5>
+<p>Disks are the backbone of storage systems, and their configurations—such as HDD, SSD, SAS, RAID, and combinations—can significantly influence design and performance. Each choice has trade-offs in cost, speed, and durability.</p>
+<h5 id="Memory-Hierarchy">Memory Hierarchy</h5>
+<p>Modern computer architecture relies heavily on a memory hierarchy. Efficient use of cache significantly affects performance. Cache misses introduce latency, making locality optimization critical.</p>
 <p><strong>Types of Locality</strong>:</p>
 <pre><code>**Spatial Locality**: Improves by ensuring data close in memory is cached together.
 - Larger cache sizes.
@@ -639,12 +704,15 @@
 - Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like **stagedDB** ensure proper context-switching within modules, even when cache capacity is limited.
 </code></pre>
 <p>At the microarchitecture level, out-of-order processors help tolerate instruction misses by executing subsequent instructions. Many of these techniques rely on accurate prediction, which is constrained by unpredictable data sets and request patterns. However, good predictions can yield substantial performance benefits.</p>
-<h4 id="Stability-Requirements"><a href="#Stability-Requirements" class="headerlink" title="Stability Requirements"></a>Stability Requirements</h4><p><strong>Multitenancy</strong><br>   When multiple customers share a storage system, ensuring fairness is critical. The system may implement priority levels to safeguard high-priority requests without starving low-priority ones. Effective multitenancy involves:</p>
+<h4 id="Stability-Requirements">Stability Requirements</h4>
+<p><strong>Multitenancy</strong><br>
+When multiple customers share a storage system, ensuring fairness is critical. The system may implement priority levels to safeguard high-priority requests without starving low-priority ones. Effective multitenancy involves:</p>
 <ul>
 <li>Fine-grained controls for individual requests.</li>
 <li>End-to-end priority management across jobs and tenants.</li>
 </ul>
-<p><strong>Graceful Degradation</strong><br>   Graceful degradation ensures that when the system approaches maximum capacity, throughput remains steady, and latency increases proportionally. This requires the system to implement throttling mechanisms to reject excessive requests gracefully.</p>
+<p><strong>Graceful Degradation</strong><br>
+Graceful degradation ensures that when the system approaches maximum capacity, throughput remains steady, and latency increases proportionally. This requires the system to implement throttling mechanisms to reject excessive requests gracefully.</p>
 
       
     </div>

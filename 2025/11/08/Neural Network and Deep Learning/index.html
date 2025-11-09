@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"10xc0ffee.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="BackgroundRecently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the point about accelerated computing is">
+    <meta name="description" content="Background Recently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the point about accelerated computing i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Neural Network and Deep Learning (1)">
 <meta property="og:url" content="https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="BackgroundRecently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the point about accelerated computing is">
+<meta property="og:description" content="Background Recently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the point about accelerated computing i">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-11-08T18:00:00.000Z">
 <meta property="article:modified_time" content="2025-11-09T06:48:48.912Z">
@@ -222,28 +222,63 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Recently I listened a few pod casts related to AI. One is about <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Even though the boss is trying to promote his company, the point about accelerated computing is already wide used and can potentially reshape the entire existing applications today that based on the general purpose computing makes sense to me. He also pointed the direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole software and hardware stack is being reshaped</a>. These all got me as an infra engineer. So I am planning to start a blog series to record my learning around machine learning, deep learning and AI stuff.</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="Background">Background</h2>
+<p>Recently I listened a few pod casts related to AI. One is about <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Even though the boss is trying to promote his company, the point about accelerated computing is already wide used and can potentially reshape the entire existing applications today that based on the general purpose computing makes sense to me. He also pointed the direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole software and hardware stack is being reshaped</a>. These all got me as an infra engineer. So I am planning to start a blog series to record my learning around machine learning, deep learning and AI stuff.</p>
 <p>In this post, I describe the knowledge learned from <a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning">this Coursera course</a>. I find it is beginner friendly.</p>
-<h2 id="Math-Prerequisites"><a href="#Math-Prerequisites" class="headerlink" title="Math Prerequisites"></a>Math Prerequisites</h2><h4 id="Matrix-Dot-Multiplication"><a href="#Matrix-Dot-Multiplication" class="headerlink" title="Matrix Dot Multiplication"></a>Matrix Dot Multiplication</h4><p>Matrix dot multiplication (also known as matrix multiplication) is a fundamental operation in linear algebra where two matrices are combined to produce a new matrix. This operation is not element-wise; instead, it involves taking the dot product of rows from the first matrix with columns from the second matrix.</p>
-<p>For example, if we have a matrix ( A ) of shape ( (m, n) ) and a matrix ( B ) of shape ( (n, p) ), their dot product ( C &#x3D; A \cdot B ) will have shape ( (m, p) ):</p>
-<p>[<br>A &#x3D;<br>\begin{bmatrix}<br>a_{11} &amp; a_{12} \<br>a_{21} &amp; a_{22} \<br>\end{bmatrix},<br>\quad<br>B &#x3D;<br>\begin{bmatrix}<br>b_{11} \<br>b_{21} \<br>\end{bmatrix}<br>]</p>
+<h2 id="Math-Prerequisites">Math Prerequisites</h2>
+<h4 id="Matrix-Dot-Multiplication">Matrix Dot Multiplication</h4>
+<p>Matrix dot multiplication (also known as matrix multiplication) is a fundamental operation in linear algebra where two matrices are combined to produce a new matrix. This operation is not element-wise; instead, it involves taking the dot product of rows from the first matrix with columns from the second matrix.</p>
+<p>For example, if we have a matrix ( A ) of shape ( (m, n) ) and a matrix ( B ) of shape ( (n, p) ), their dot product ( C = A \cdot B ) will have shape ( (m, p) ):</p>
+<p>[<br>
+A =<br>
+\begin{bmatrix}<br>
+a_{11} &amp; a_{12} \<br>
+a_{21} &amp; a_{22} \<br>
+\end{bmatrix},<br>
+\quad<br>
+B =<br>
+\begin{bmatrix}<br>
+b_{11} \<br>
+b_{21} \<br>
+\end{bmatrix}<br>
+]</p>
 <p>The resulting matrix ( C ) is:</p>
-<p>[<br>C &#x3D; A \cdot B &#x3D;<br>\begin{bmatrix}<br>a_{11}b_{11} + a_{12}b_{21} \<br>a_{21}b_{11} + a_{22}b_{21} \<br>\end{bmatrix}<br>]</p>
+<p>[<br>
+C = A \cdot B =<br>
+\begin{bmatrix}<br>
+a_{11}b_{11} + a_{12}b_{21} \<br>
+a_{21}b_{11} + a_{22}b_{21} \<br>
+\end{bmatrix}<br>
+]</p>
 <p>This operation is widely used in neural networks, especially for computations in each layer.</p>
-<h4 id="First-Derivative-and-Second-Derivative"><a href="#First-Derivative-and-Second-Derivative" class="headerlink" title="First Derivative and Second Derivative"></a>First Derivative and Second Derivative</h4><p>The <strong>first derivative</strong> of a function measures the rate at which the function’s value changes as its input changes. In the context of neural networks and optimization, the first derivative helps us understand the <strong>slope</strong> (or gradient) of the loss function with respect to the model parameters. When we compute gradients during training, we are essentially finding the direction in which the function increases or decreases most rapidly.</p>
+<h4 id="First-Derivative-and-Second-Derivative">First Derivative and Second Derivative</h4>
+<p>The <strong>first derivative</strong> of a function measures the rate at which the function’s value changes as its input changes. In the context of neural networks and optimization, the first derivative helps us understand the <strong>slope</strong> (or gradient) of the loss function with respect to the model parameters. When we compute gradients during training, we are essentially finding the direction in which the function increases or decreases most rapidly.</p>
 <p>The <strong>second derivative</strong>, on the other hand, measures how the rate of change itself changes—i.e., it gives us information about the <strong>curvature</strong> of the function. A positive second derivative indicates that the function is curving upwards (convex), while a negative value indicates it’s curving downwards (concave).</p>
-<h4 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h4><p><strong>Gradient descent</strong> is an optimization algorithm used to minimize the loss function in machine learning. It works by iteratively moving the model parameters in the direction opposite to the gradient of the loss function (since this is the direction of steepest decrease). Specifically, we update each parameter ( \theta ) by:</p>
-<p>[<br>\theta :&#x3D; \theta - \alpha \frac{\partial J}{\partial \theta}<br>]</p>
+<h4 id="Gradient-Descent">Gradient Descent</h4>
+<p><strong>Gradient descent</strong> is an optimization algorithm used to minimize the loss function in machine learning. It works by iteratively moving the model parameters in the direction opposite to the gradient of the loss function (since this is the direction of steepest decrease). Specifically, we update each parameter ( \theta ) by:</p>
+<p>[<br>
+\theta := \theta - \alpha \frac{\partial J}{\partial \theta}<br>
+]</p>
 <p>where ( \alpha ) is the <strong>learning rate</strong>, and ( \frac{\partial J}{\partial \theta} ) is the gradient of the loss function ( J ) with respect to ( \theta ).</p>
-<h4 id="Second-Derivative’s-Role-in-Gradient-Descent"><a href="#Second-Derivative’s-Role-in-Gradient-Descent" class="headerlink" title="Second Derivative’s Role in Gradient Descent"></a>Second Derivative’s Role in Gradient Descent</h4><p>The second derivative is important for understanding the nature of the critical points we find using gradient descent:</p>
+<h4 id="Second-Derivative’s-Role-in-Gradient-Descent">Second Derivative’s Role in Gradient Descent</h4>
+<p>The second derivative is important for understanding the nature of the critical points we find using gradient descent:</p>
 <ul>
 <li>If the <strong>second derivative is a positive constant</strong>, it means the function is <strong>convex</strong> everywhere (like a parabola opening upwards). Gradient descent will be guaranteed to find the <strong>global minimum</strong>.</li>
 <li>If the <strong>second derivative is a negative constant</strong>, the function is <strong>concave</strong> everywhere, and gradient descent would find the global maximum.</li>
 <li>However, if the <strong>second derivative varies</strong> (is not constant), the function can have multiple local minima and maxima (local extreme values). In such cases, gradient descent might only find a <strong>local minimum or maximum</strong>, depending on the starting point.</li>
 </ul>
 <p>This is why the loss landscapes in deep learning are often tricky—the presence of many local extremes due to the non-constant curvature, as indicated by the second derivatives.</p>
-<h2 id="Neural-Network-Introduction"><a href="#Neural-Network-Introduction" class="headerlink" title="Neural Network Introduction"></a>Neural Network Introduction</h2><p>Logistic Regression is a well-known</p>
-<h2 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h2><h3 id="Notations"><a href="#Notations" class="headerlink" title="Notations"></a>Notations</h3><h3 id="Activation-Function"><a href="#Activation-Function" class="headerlink" title="Activation Function"></a>Activation Function</h3><h3 id="Loss-Function"><a href="#Loss-Function" class="headerlink" title="Loss Function"></a>Loss Function</h3><h3 id="Forward-Propogation"><a href="#Forward-Propogation" class="headerlink" title="Forward Propogation"></a>Forward Propogation</h3><h3 id="Backward-Propogation"><a href="#Backward-Propogation" class="headerlink" title="Backward Propogation"></a>Backward Propogation</h3><h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><h3 id="Inferencing"><a href="#Inferencing" class="headerlink" title="Inferencing"></a>Inferencing</h3>
+<h2 id="Neural-Network-Introduction">Neural Network Introduction</h2>
+<p>Logistic Regression is a well-known</p>
+<h2 id="Neural-Network">Neural Network</h2>
+<h3 id="Notations">Notations</h3>
+<h3 id="Activation-Function">Activation Function</h3>
+<h3 id="Loss-Function">Loss Function</h3>
+<h3 id="Forward-Propogation">Forward Propogation</h3>
+<h3 id="Backward-Propogation">Backward Propogation</h3>
+<h3 id="Training">Training</h3>
+<h3 id="Inferencing">Inferencing</h3>
+
     </div>
 
     

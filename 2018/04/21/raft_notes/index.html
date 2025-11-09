@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"10xc0ffee.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Leader election 是如何进行的？raft的leader election阶段类似使用paxos算法谋求一个共同的值(leader)。大致阶段如下：  每个Proposer初始得到一个election timeout。这个election timeout是在一个范围内随机的。 若max election timeout超时未收到其他proposal，则向quorum发布leader是自">
+    <meta name="description" content="Leader election 是如何进行的？ raft的leader election阶段类似使用paxos算法谋求一个共同的值(leader)。大致阶段如下：  每个Proposer初始得到一个election timeout。这个election timeout是在一个范围内随机的。 若max election timeout超时未收到其他proposal，则向quorum发布leader是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RAFT Notes">
 <meta property="og:url" content="https://10xc0ffee.github.io/2018/04/21/raft_notes/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Leader election 是如何进行的？raft的leader election阶段类似使用paxos算法谋求一个共同的值(leader)。大致阶段如下：  每个Proposer初始得到一个election timeout。这个election timeout是在一个范围内随机的。 若max election timeout超时未收到其他proposal，则向quorum发布leader是自">
+<meta property="og:description" content="Leader election 是如何进行的？ raft的leader election阶段类似使用paxos算法谋求一个共同的值(leader)。大致阶段如下：  每个Proposer初始得到一个election timeout。这个election timeout是在一个范围内随机的。 若max election timeout超时未收到其他proposal，则向quorum发布leader是">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-04-21T17:00:00.000Z">
 <meta property="article:modified_time" content="2025-01-20T20:03:52.168Z">
@@ -222,24 +222,29 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="Leader-election-是如何进行的？"><a href="#Leader-election-是如何进行的？" class="headerlink" title="Leader election 是如何进行的？"></a>Leader election 是如何进行的？</h3><p>raft的leader election阶段类似使用paxos算法谋求一个共同的值(leader)。大致阶段如下：</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="Leader-election-是如何进行的？">Leader election 是如何进行的？</h3>
+<p>raft的leader election阶段类似使用paxos算法谋求一个共同的值(leader)。大致阶段如下：</p>
 <ol>
 <li>每个Proposer初始得到一个election timeout。这个election timeout是在一个范围内随机的。</li>
 <li>若max election timeout超时未收到其他proposal，则向quorum发布leader是自己的proposal。</li>
 <li>若得到majority acceptor认可，则成为leader。</li>
 </ol>
 <p>每个proposal都附带一个sequence number，在raft中称为term。term标志新一轮election的产生。算法允许不同proposer使用相同term propose the leader。</p>
-<h3 id="为什么所有写操作（包括leader-election）都是majority-based？"><a href="#为什么所有写操作（包括leader-election）都是majority-based？" class="headerlink" title="为什么所有写操作（包括leader election）都是majority based？"></a>为什么所有写操作（包括leader election）都是majority based？</h3><p>A majority got newest value &#x3D;&gt; any majority group contains the newest value &#x3D;&gt; some minority group don’t have the newest value</p>
+<h3 id="为什么所有写操作（包括leader-election）都是majority-based？">为什么所有写操作（包括leader election）都是majority based？</h3>
+<p>A majority got newest value =&gt; any majority group contains the newest value =&gt; some minority group don’t have the newest value</p>
 <p>Then we can choose to stop the service when there are only minority accessible. In the other hand, service can be online only when there are majoirty cab be accessible. That’s basically pigenon hole principle.</p>
 <p>由于我们没法知道全局中有哪些replica含有最新的数据，是否能做leader都是通过比较判断的。如果我们有全局的信息实时记录谁有最新的数据，我们就能打破majority的限制。一些基于failure detector的协议就是这么做的。</p>
-<h3 id="如何保证leader的uniqueness"><a href="#如何保证leader的uniqueness" class="headerlink" title="如何保证leader的uniqueness"></a>如何保证leader的uniqueness</h3><p>raft算法本身并不维护leader的唯一。raft只维护在相同term下只会产生一个leader。所以算法是会出现同时存在多个replica认为自己是leader的情况。</p>
+<h3 id="如何保证leader的uniqueness">如何保证leader的uniqueness</h3>
+<p>raft算法本身并不维护leader的唯一。raft只维护在相同term下只会产生一个leader。所以算法是会出现同时存在多个replica认为自己是leader的情况。</p>
 <ul>
 <li>对于写请求，由于只有newest term leader拥有majority的ISR，所以写请求只会在这个leader上成功。</li>
 <li>对于读请求，可能读到旧值。</li>
 </ul>
 <p>整体上基本的raft算法能提供sequential consistency，却达不到linearizability。对于有些需求外部时间或者因果一致的应用，有的会增加了lease保证leader的uniqueness，有的在读请求上做文章，保证读的时候还是leader否则读失败。但是有得必有失，这种extension增加了算法对时间的依赖，即分布式环境中time drift对应用的影响。</p>
-<h3 id="新上任的Leader什么时候可以对外服务？"><a href="#新上任的Leader什么时候可以对外服务？" class="headerlink" title="新上任的Leader什么时候可以对外服务？"></a>新上任的Leader什么时候可以对外服务？</h3><p>在raft中，成为leader并不意味这你确定所有数据已经commit，只能确定committed数据和最新数据（to-commit数据）是你的数据的子集。所以raft中新leader不能直接服务，需要经过数轮AppendEntries commit一个当前term的占位entry才行 （我有个疑问为什么必须提交一个真实的当前term的dummy entry。空的AppendEntries作为心跳也可以把之前lag的entries同步吧？虽然这样有违raft commit的原则，但是我觉得这个时候这些previous term的entries是可以commit的了）。</p>
-<h3 id="谁可以commit数据？"><a href="#谁可以commit数据？" class="headerlink" title="谁可以commit数据？"></a>谁可以commit数据？</h3><p>Leader可以commit数据，不仅仅是leader with newest term。old leader可能会commit数据并告知clients。raft保证old leader的后继leader肯定会commit一遍同样的entries。最新leader也同样包含相同的entries。</p>
+<h3 id="新上任的Leader什么时候可以对外服务？">新上任的Leader什么时候可以对外服务？</h3>
+<p>在raft中，成为leader并不意味这你确定所有数据已经commit，只能确定committed数据和最新数据（to-commit数据）是你的数据的子集。所以raft中新leader不能直接服务，需要经过数轮AppendEntries commit一个当前term的占位entry才行 （我有个疑问为什么必须提交一个真实的当前term的dummy entry。空的AppendEntries作为心跳也可以把之前lag的entries同步吧？虽然这样有违raft commit的原则，但是我觉得这个时候这些previous term的entries是可以commit的了）。</p>
+<h3 id="谁可以commit数据？">谁可以commit数据？</h3>
+<p>Leader可以commit数据，不仅仅是leader with newest term。old leader可能会commit数据并告知clients。raft保证old leader的后继leader肯定会commit一遍同样的entries。最新leader也同样包含相同的entries。</p>
 
     </div>
 
