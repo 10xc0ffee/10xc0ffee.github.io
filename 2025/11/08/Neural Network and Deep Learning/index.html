@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"10xc0ffee.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Background Recently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the point about accelerated computing i">
+    <meta name="description" content="dummy        &#x2F;* Default styles provided by pandoc.     ** See https:&#x2F;&#x2F;pandoc.org&#x2F;MANUAL.html#variables-for-html for config info.     *&#x2F;     html {       color: #1a1a1a;       background-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Neural Network and Deep Learning (1)">
 <meta property="og:url" content="https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Background Recently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the point about accelerated computing i">
+<meta property="og:description" content="dummy        &#x2F;* Default styles provided by pandoc.     ** See https:&#x2F;&#x2F;pandoc.org&#x2F;MANUAL.html#variables-for-html for config info.     *&#x2F;     html {       color: #1a1a1a;       background-">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-11-08T18:00:00.000Z">
 <meta property="article:modified_time" content="2025-11-09T06:48:48.912Z">
@@ -114,7 +114,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-Prerequisites"><span class="nav-number">2.</span> <span class="nav-text">Math Prerequisites</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-Dot-Multiplication"><span class="nav-number">2.0.1.</span> <span class="nav-text">Matrix Dot Multiplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#First-Derivative-and-Second-Derivative"><span class="nav-number">2.0.2.</span> <span class="nav-text">First Derivative and Second Derivative</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">2.0.3.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Second-Derivative%E2%80%99s-Role-in-Gradient-Descent"><span class="nav-number">2.0.4.</span> <span class="nav-text">Second Derivative’s Role in Gradient Descent</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Network-Introduction"><span class="nav-number">3.</span> <span class="nav-text">Neural Network Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Network"><span class="nav-number">4.</span> <span class="nav-text">Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notations"><span class="nav-number">4.1.</span> <span class="nav-text">Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activation-Function"><span class="nav-number">4.2.</span> <span class="nav-text">Activation Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-Function"><span class="nav-number">4.3.</span> <span class="nav-text">Loss Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-Propogation"><span class="nav-number">4.4.</span> <span class="nav-text">Forward Propogation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backward-Propogation"><span class="nav-number">4.5.</span> <span class="nav-text">Backward Propogation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training"><span class="nav-number">4.6.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inferencing"><span class="nav-number">4.7.</span> <span class="nav-text">Inferencing</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#math-prerequisites"><span class="nav-number">2.</span> <span class="nav-text">Math Prerequisites</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#matrix-dot-multiplication"><span class="nav-number">2.0.1.</span> <span class="nav-text">Matrix Dot Multiplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gradient-descent"><span class="nav-number">2.0.2.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#second-derivatives-role-in-gradient-descent"><span class="nav-number">2.0.3.</span> <span class="nav-text">Second Derivative’s
+Role in Gradient Descent</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#neural-network-introduction"><span class="nav-number">3.</span> <span class="nav-text">Neural Network Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#neural-network"><span class="nav-number">4.</span> <span class="nav-text">Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#notations"><span class="nav-number">4.1.</span> <span class="nav-text">Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#activation-function"><span class="nav-number">4.2.</span> <span class="nav-text">Activation Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loss-function"><span class="nav-number">4.3.</span> <span class="nav-text">Loss Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-propogation"><span class="nav-number">4.4.</span> <span class="nav-text">Forward Propogation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#backward-propogation"><span class="nav-number">4.5.</span> <span class="nav-text">Backward Propogation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#training"><span class="nav-number">4.6.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inferencing"><span class="nav-number">4.7.</span> <span class="nav-text">Inferencing</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -222,62 +223,281 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Background">Background</h2>
-<p>Recently I listened a few pod casts related to AI. One is about <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Even though the boss is trying to promote his company, the point about accelerated computing is already wide used and can potentially reshape the entire existing applications today that based on the general purpose computing makes sense to me. He also pointed the direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole software and hardware stack is being reshaped</a>. These all got me as an infra engineer. So I am planning to start a blog series to record my learning around machine learning, deep learning and AI stuff.</p>
-<p>In this post, I describe the knowledge learned from <a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning">this Coursera course</a>. I find it is beginner friendly.</p>
-<h2 id="Math-Prerequisites">Math Prerequisites</h2>
-<h4 id="Matrix-Dot-Multiplication">Matrix Dot Multiplication</h4>
-<p>Matrix dot multiplication (also known as matrix multiplication) is a fundamental operation in linear algebra where two matrices are combined to produce a new matrix. This operation is not element-wise; instead, it involves taking the dot product of rows from the first matrix with columns from the second matrix.</p>
-<p>For example, if we have a matrix ( A ) of shape ( (m, n) ) and a matrix ( B ) of shape ( (n, p) ), their dot product ( C = A \cdot B ) will have shape ( (m, p) ):</p>
-<p>[<br>
-A =<br>
-\begin{bmatrix}<br>
-a_{11} &amp; a_{12} \<br>
-a_{21} &amp; a_{22} \<br>
-\end{bmatrix},<br>
-\quad<br>
-B =<br>
-\begin{bmatrix}<br>
-b_{11} \<br>
-b_{21} \<br>
-\end{bmatrix}<br>
-]</p>
+    <div class="post-body" itemprop="articleBody"><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dummy</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h2 id="background">Background</h2>
+<p>Recently I listened a few pod casts related to AI. One is about <a
+target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason
+Huang</a>. Even though the boss is trying to promote his company, the
+point about accelerated computing is already wide used and can
+potentially reshape the entire existing applications today that based on
+the general purpose computing makes sense to me. He also pointed the
+direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole
+software and hardware stack is being reshaped</a>. These all got me as
+an infra engineer. So I am planning to start a blog series to record my
+learning around machine learning, deep learning and AI stuff.</p>
+<p>In this post, I describe the knowledge learned from <a
+target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning">this
+Coursera course</a>. I find it is beginner friendly.</p>
+<h2 id="math-prerequisites">Math Prerequisites</h2>
+<h4 id="matrix-dot-multiplication">Matrix Dot Multiplication</h4>
+<p>Matrix dot multiplication (also known as matrix multiplication) is a
+fundamental operation in linear algebra where two matrices are combined
+to produce a new matrix. This operation is not element-wise; instead, it
+involves taking the dot product of rows from the first matrix with
+columns from the second matrix.</p>
+<p>For example, if we have a matrix ( A ) of shape ( (m, n) ) and a
+matrix ( B ) of shape ( (n, p) ), their dot product ( C = A B ) will
+have shape ( (m, p) ):</p>
+[ A =
+<span class="math display">\[\begin{bmatrix}
+a_{11} &amp; a_{12} \\
+a_{21} &amp; a_{22} \\
+\end{bmatrix}\]</span>
+, B =
+<span class="math display">\[\begin{bmatrix}
+b_{11} \\
+b_{21} \\
+\end{bmatrix}\]</span>
+<p>]</p>
 <p>The resulting matrix ( C ) is:</p>
-<p>[<br>
-C = A \cdot B =<br>
-\begin{bmatrix}<br>
-a_{11}b_{11} + a_{12}b_{21} \<br>
-a_{21}b_{11} + a_{22}b_{21} \<br>
-\end{bmatrix}<br>
-]</p>
-<p>This operation is widely used in neural networks, especially for computations in each layer.</p>
-<h4 id="First-Derivative-and-Second-Derivative">First Derivative and Second Derivative</h4>
-<p>The <strong>first derivative</strong> of a function measures the rate at which the function’s value changes as its input changes. In the context of neural networks and optimization, the first derivative helps us understand the <strong>slope</strong> (or gradient) of the loss function with respect to the model parameters. When we compute gradients during training, we are essentially finding the direction in which the function increases or decreases most rapidly.</p>
-<p>The <strong>second derivative</strong>, on the other hand, measures how the rate of change itself changes—i.e., it gives us information about the <strong>curvature</strong> of the function. A positive second derivative indicates that the function is curving upwards (convex), while a negative value indicates it’s curving downwards (concave).</p>
-<h4 id="Gradient-Descent">Gradient Descent</h4>
-<p><strong>Gradient descent</strong> is an optimization algorithm used to minimize the loss function in machine learning. It works by iteratively moving the model parameters in the direction opposite to the gradient of the loss function (since this is the direction of steepest decrease). Specifically, we update each parameter ( \theta ) by:</p>
-<p>[<br>
-\theta := \theta - \alpha \frac{\partial J}{\partial \theta}<br>
-]</p>
-<p>where ( \alpha ) is the <strong>learning rate</strong>, and ( \frac{\partial J}{\partial \theta} ) is the gradient of the loss function ( J ) with respect to ( \theta ).</p>
-<h4 id="Second-Derivative’s-Role-in-Gradient-Descent">Second Derivative’s Role in Gradient Descent</h4>
-<p>The second derivative is important for understanding the nature of the critical points we find using gradient descent:</p>
+[ C = A B =
+<span class="math display">\[\begin{bmatrix}
+a_{11}b_{11} + a_{12}b_{21} \\
+a_{21}b_{11} + a_{22}b_{21} \\
+\end{bmatrix}\]</span>
+<p>]</p>
+<p>This operation is widely used in neural networks, especially for
+computations in each layer. #### First Derivative and Second
+Derivative</p>
+<p>The <strong>first derivative</strong> of a function measures the rate
+at which the function’s value changes as its input changes. In the
+context of neural networks and optimization, the first derivative helps
+us understand the <strong>slope</strong> (or gradient) of the loss
+function with respect to the model parameters. When we compute gradients
+during training, we are essentially finding the direction in which the
+function increases or decreases most rapidly.</p>
+<p>The <strong>second derivative</strong>, on the other hand, measures
+how the rate of change itself changes—i.e., it gives us information
+about the <strong>curvature</strong> of the function. A positive second
+derivative indicates that the function is curving upwards (convex),
+while a negative value indicates it’s curving downwards (concave).</p>
+<h4 id="gradient-descent">Gradient Descent</h4>
+<p><strong>Gradient descent</strong> is an optimization algorithm used
+to minimize the loss function in machine learning. It works by
+iteratively moving the model parameters in the direction opposite to the
+gradient of the loss function (since this is the direction of steepest
+decrease). Specifically, we update each parameter ( ) by:</p>
+<p>[ := - ]</p>
+<p>where ( ) is the <strong>learning rate</strong>, and ( ) is the
+gradient of the loss function ( J ) with respect to ( ).</p>
+<h4 id="second-derivatives-role-in-gradient-descent">Second Derivative’s
+Role in Gradient Descent</h4>
+<p>The second derivative is important for understanding the nature of
+the critical points we find using gradient descent:</p>
 <ul>
-<li>If the <strong>second derivative is a positive constant</strong>, it means the function is <strong>convex</strong> everywhere (like a parabola opening upwards). Gradient descent will be guaranteed to find the <strong>global minimum</strong>.</li>
-<li>If the <strong>second derivative is a negative constant</strong>, the function is <strong>concave</strong> everywhere, and gradient descent would find the global maximum.</li>
-<li>However, if the <strong>second derivative varies</strong> (is not constant), the function can have multiple local minima and maxima (local extreme values). In such cases, gradient descent might only find a <strong>local minimum or maximum</strong>, depending on the starting point.</li>
+<li>If the <strong>second derivative is a positive constant</strong>, it
+means the function is <strong>convex</strong> everywhere (like a
+parabola opening upwards). Gradient descent will be guaranteed to find
+the <strong>global minimum</strong>.</li>
+<li>If the <strong>second derivative is a negative constant</strong>,
+the function is <strong>concave</strong> everywhere, and gradient
+descent would find the global maximum.</li>
+<li>However, if the <strong>second derivative varies</strong> (is not
+constant), the function can have multiple local minima and maxima (local
+extreme values). In such cases, gradient descent might only find a
+<strong>local minimum or maximum</strong>, depending on the starting
+point.</li>
 </ul>
-<p>This is why the loss landscapes in deep learning are often tricky—the presence of many local extremes due to the non-constant curvature, as indicated by the second derivatives.</p>
-<h2 id="Neural-Network-Introduction">Neural Network Introduction</h2>
+<p>This is why the loss landscapes in deep learning are often tricky—the
+presence of many local extremes due to the non-constant curvature, as
+indicated by the second derivatives.</p>
+<h2 id="neural-network-introduction">Neural Network Introduction</h2>
 <p>Logistic Regression is a well-known</p>
-<h2 id="Neural-Network">Neural Network</h2>
-<h3 id="Notations">Notations</h3>
-<h3 id="Activation-Function">Activation Function</h3>
-<h3 id="Loss-Function">Loss Function</h3>
-<h3 id="Forward-Propogation">Forward Propogation</h3>
-<h3 id="Backward-Propogation">Backward Propogation</h3>
-<h3 id="Training">Training</h3>
-<h3 id="Inferencing">Inferencing</h3>
+<h2 id="neural-network">Neural Network</h2>
+<h3 id="notations">Notations</h3>
+<h3 id="activation-function">Activation Function</h3>
+<h3 id="loss-function">Loss Function</h3>
+<h3 id="forward-propogation">Forward Propogation</h3>
+<h3 id="backward-propogation">Backward Propogation</h3>
+<h3 id="training">Training</h3>
+<h3 id="inferencing">Inferencing</h3>
+</body>
+</html>
 
     </div>
 
