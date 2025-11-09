@@ -19,25 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"10xc0ffee.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Neural Network and Deep Learning (1)BackgroundRecently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the">
+    <meta name="description" content="BackgroundRecently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the point about accelerated computing is">
 <meta property="og:type" content="article">
-<meta property="og:title">
+<meta property="og:title" content="Neural Network and Deep Learning (1)">
 <meta property="og:url" content="https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Neural Network and Deep Learning (1)BackgroundRecently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the">
+<meta property="og:description" content="BackgroundRecently I listened a few pod casts related to AI. One is about an interview with Jason Huang. Even though the boss is trying to promote his company, the point about accelerated computing is">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-11-09T05:02:56.563Z">
-<meta property="article:modified_time" content="2025-11-09T06:41:40.646Z">
+<meta property="article:published_time" content="2025-11-08T18:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-09T06:48:48.912Z">
+<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="artifical intelligence">
 <meta name="twitter:card" content="summary">
 
 
 <link rel="canonical" href="https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/","path":"2025/11/08/Neural Network and Deep Learning/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/","path":"2025/11/08/Neural Network and Deep Learning/","title":"Neural Network and Deep Learning (1)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | </title>
+<title>Neural Network and Deep Learning (1) | </title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QSMDD3ZT3S"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QSMDD3ZT3S","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -112,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Network-and-Deep-Learning-1"><span class="nav-number">1.</span> <span class="nav-text">Neural Network and Deep Learning (1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-Prerequisites"><span class="nav-number">1.2.</span> <span class="nav-text">Math Prerequisites</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-Dot-Multiplication"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Matrix Dot Multiplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#First-Derivative-and-Second-Derivative"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">First Derivative and Second Derivative</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Second-Derivative%E2%80%99s-Role-in-Gradient-Descent"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">Second Derivative’s Role in Gradient Descent</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Network-Introduction"><span class="nav-number">1.3.</span> <span class="nav-text">Neural Network Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Network"><span class="nav-number">1.4.</span> <span class="nav-text">Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notations"><span class="nav-number">1.4.1.</span> <span class="nav-text">Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activation-Function"><span class="nav-number">1.4.2.</span> <span class="nav-text">Activation Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-Function"><span class="nav-number">1.4.3.</span> <span class="nav-text">Loss Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-Propogation"><span class="nav-number">1.4.4.</span> <span class="nav-text">Forward Propogation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backward-Propogation"><span class="nav-number">1.4.5.</span> <span class="nav-text">Backward Propogation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training"><span class="nav-number">1.4.6.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inferencing"><span class="nav-number">1.4.7.</span> <span class="nav-text">Inferencing</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-Prerequisites"><span class="nav-number">2.</span> <span class="nav-text">Math Prerequisites</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-Dot-Multiplication"><span class="nav-number">2.0.1.</span> <span class="nav-text">Matrix Dot Multiplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#First-Derivative-and-Second-Derivative"><span class="nav-number">2.0.2.</span> <span class="nav-text">First Derivative and Second Derivative</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">2.0.3.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Second-Derivative%E2%80%99s-Role-in-Gradient-Descent"><span class="nav-number">2.0.4.</span> <span class="nav-text">Second Derivative’s Role in Gradient Descent</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Network-Introduction"><span class="nav-number">3.</span> <span class="nav-text">Neural Network Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Network"><span class="nav-number">4.</span> <span class="nav-text">Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notations"><span class="nav-number">4.1.</span> <span class="nav-text">Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activation-Function"><span class="nav-number">4.2.</span> <span class="nav-text">Activation Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-Function"><span class="nav-number">4.3.</span> <span class="nav-text">Loss Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-Propogation"><span class="nav-number">4.4.</span> <span class="nav-text">Forward Propogation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backward-Propogation"><span class="nav-number">4.5.</span> <span class="nav-text">Backward Propogation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training"><span class="nav-number">4.6.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inferencing"><span class="nav-number">4.7.</span> <span class="nav-text">Inferencing</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -125,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -136,7 +138,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -176,12 +178,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | null">
+      <meta itemprop="name" content="Neural Network and Deep Learning (1) | null">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          Neural Network and Deep Learning (1)
         </h1>
 
         <div class="post-meta-container">
@@ -192,7 +194,16 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2025-11-08 21:02:56" itemprop="dateCreated datePublished" datetime="2025-11-08T21:02:56-08:00">2025-11-08</time>
+      <time title="Created: 2025-11-08 10:00:00" itemprop="dateCreated datePublished" datetime="2025-11-08T10:00:00-08:00">2025-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/tech/" itemprop="url" rel="index"><span itemprop="name">tech</span></a>
+        </span>
     </span>
 
   
@@ -211,7 +222,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="Neural-Network-and-Deep-Learning-1"><a href="#Neural-Network-and-Deep-Learning-1" class="headerlink" title="Neural Network and Deep Learning (1)"></a>Neural Network and Deep Learning (1)</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Recently I listened a few pod casts related to AI. One is about <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Even though the boss is trying to promote his company, the point about accelerated computing is already wide used and can potentially reshape the entire existing applications today that based on the general purpose computing makes sense to me. He also pointed the direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole software and hardware stack is being reshaped</a>. These all got me as an infra engineer. So I am planning to start a blog series to record my learning around machine learning, deep learning and AI stuff.</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Recently I listened a few pod casts related to AI. One is about <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Even though the boss is trying to promote his company, the point about accelerated computing is already wide used and can potentially reshape the entire existing applications today that based on the general purpose computing makes sense to me. He also pointed the direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole software and hardware stack is being reshaped</a>. These all got me as an infra engineer. So I am planning to start a blog series to record my learning around machine learning, deep learning and AI stuff.</p>
 <p>In this post, I describe the knowledge learned from <a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning">this Coursera course</a>. I find it is beginner friendly.</p>
 <h2 id="Math-Prerequisites"><a href="#Math-Prerequisites" class="headerlink" title="Math Prerequisites"></a>Math Prerequisites</h2><h4 id="Matrix-Dot-Multiplication"><a href="#Matrix-Dot-Multiplication" class="headerlink" title="Matrix Dot Multiplication"></a>Matrix Dot Multiplication</h4><p>Matrix dot multiplication (also known as matrix multiplication) is a fundamental operation in linear algebra where two matrices are combined to produce a new matrix. This operation is not element-wise; instead, it involves taking the dot product of rows from the first matrix with columns from the second matrix.</p>
 <p>For example, if we have a matrix ( A ) of shape ( (m, n) ) and a matrix ( B ) of shape ( (n, p) ), their dot product ( C &#x3D; A \cdot B ) will have shape ( (m, p) ):</p>
@@ -240,13 +251,17 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+              <a href="/tags/artifical-intelligence/" rel="tag"># artifical intelligence</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/01/09/2025/" rel="prev" title="2025">
-                  <i class="fa fa-angle-left"></i> 2025
+                <a href="/2021/06/27/Life%20Beyond%20Distributed%20Transactions:%20An%20Apostate's%20Opinion/" rel="prev" title="Note on Life Beyond Distributed Transactions">
+                  <i class="fa fa-angle-left"></i> Note on Life Beyond Distributed Transactions
                 </a>
             </div>
             <div class="post-nav-item">
