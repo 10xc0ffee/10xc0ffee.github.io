@@ -85,7 +85,7 @@
 
   <url>
     <loc>https://www.0xc0ffee.xyz/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -93,28 +93,28 @@
   
   <url>
     <loc>https://www.0xc0ffee.xyz/tags/distributed-system/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.0xc0ffee.xyz/tags/database/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.0xc0ffee.xyz/tags/storage/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.0xc0ffee.xyz/tags/consensus/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -123,7 +123,7 @@
   
   <url>
     <loc>https://www.0xc0ffee.xyz/categories/tech/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
