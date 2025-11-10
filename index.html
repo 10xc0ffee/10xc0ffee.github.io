@@ -584,9 +584,10 @@ features, collectively forming the input layer.</p>
 output layer. We denote each layer as <span
 class="math inline">\(L^{[i]}\)</span>, with <span
 class="math inline">\(L^{[0]}\)</span> representing the input layer and
-<span class="math inline">\(L^{[4]}\)</span> the output layer. The term
-<span class="math inline">\(n^{[l]}\)</span> refers to the number of
-neurons (or units) in layer <span class="math inline">\(l\)</span>.</p>
+<span class="math inline">\(L^{[4]}\)</span> the output layer (layer
+<span class="math inline">\(L\)</span>). The term <span
+class="math inline">\(n^{[l]}\)</span> refers to the number of neurons
+(or units) in layer <span class="math inline">\(l\)</span>.</p>
 <p>The input to layer <span class="math inline">\(L^{[i]}\)</span> is
 simply the output from the previous layer, <span
 class="math inline">\(L^{[i-1]}\)</span>. Thus, the input for layer
@@ -694,18 +695,19 @@ We will extend the notations from “#### Notations” section. For example,
 <span class="math inline">\(A^{[0]}\)</span> is the labeled data
 samples, shapes a matrix of shape <span class="math inline">\((n_x,
 m)\)</span>. Similarly, at layer 1, <span class="math inline">\(Z^{[1]}
-= W^{[1]}A^{[0]}+B^{[1]}\)</span>. To generalize it to layer <span
-class="math inline">\(l\)</span>, we have:</p>
+= W^{[1]}A^{[0]}+\operatorname{broadcast}(b^{[1]})\)</span>. To
+generalize it to layer <span class="math inline">\(l\)</span>, we
+have:</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; W^{[l]}.shape = (n^{[l]}, n^{[l-1]})    \\
 &amp; A^{[l-1]}.shape = (n^{[l-1]}, m)        \\
-&amp; B^{[l]}.shape = (n^{[l]}, m)            \\
+&amp; b^{[l]}.shape = (n^{[l]}, 1)            \\
 \end{aligned}
 \]</span></p>
 <p><span class="math display">\[
 \begin{aligned}
-&amp; Z^{[l]} = W^{[l]}A^{[l-1]} + B^{[l]} \\
+&amp; Z^{[l]} = W^{[l]}A^{[l-1]} + \operatorname{broadcast}(b^{[l]}) \\
 &amp; Z^{[l]}.shape = (n^{[l]}, m)
 \end{aligned}
 \]</span></p>
@@ -717,23 +719,47 @@ class="math inline">\(l\)</span>, we have:</p>
 \]</span></p>
 <p>At each layer, the activation function <span
 class="math inline">\(g\)</span> could be different.</p>
-<p>A backward propogation aims to tune parameters <span
-class="math inline">\(W^{[l]}\)</span> at each layer <span
-class="math inline">\(l\)</span> by applying gradient descent. Iteration
-from layer <span class="math inline">\(l\)</span> to layer 1, at each
-layer, we first calculate the gradients of all the parameters:</p>
+<p>Backward propagation (backpropagation) is the process by which neural
+networks update their parameters <span
+class="math inline">\(W^{[l]}\)</span> and <span
+class="math inline">\(B^{[l]}\)</span> at each layer <span
+class="math inline">\(l\)</span> using gradient descent. The key goal is
+to compute the gradients <span class="math inline">\(\frac{\partial
+L}{\partial W^{[l]}}\)</span> (denoted as <span
+class="math inline">\(dW^{[l]}\)</span>) and <span
+class="math inline">\(\frac{\partial L}{\partial B^{[l]}}\)</span>
+(denoted as <span class="math inline">\(dB^{[l]}\)</span>), iteratively
+from the output layer back to the first layer. Assuming the use of the
+cross-entropy loss function:</p>
 <p><span class="math display">\[
 \begin{aligned}
-&amp; \frac{\partial L}{\partial W} =  \\
-&amp; \theta := \theta - \alpha \frac{\partial L}{\partial \theta}
+L(Y, \hat{Y}) = -\frac{1}{m} \operatorname{Tr} \left[ Y \log(\hat{Y}^T)
++ (1 - Y) \log((1 - \hat{Y})^T) \right]
 \end{aligned}
 \]</span></p>
+<p>where <span class="math inline">\(\hat{Y} = A^{[L]}\)</span>. At each
+layer <span class="math inline">\(l\)</span>, the gradients are computed
+as follows:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; dA^{[l]} = \text{gradient of the loss with respect to } A^{[l]} \\
+&amp; dZ^{[l]} = dA^{[l]} \circ g&#39; (Z^{[l]}) \quad
+\text{(element-wise product with activation derivative)} \\
+&amp; dW^{[l]} = \frac{1}{m} dZ^{[l]} (A^{[l-1]})^T \\
+&amp; db^{[l]} = \frac{1}{m} \operatorname{sum}(dZ^{[l]}, \text{axis}=1,
+\text{keepdims=True}) \\
+\end{aligned}
+\]</span></p>
+<p>Here, <span class="math inline">\(\circ\)</span> denotes element-wise
+multiplication, and <span class="math inline">\(g&#39;\)</span> is the
+derivative of the activation function. These gradients are then used to
+update the weights and biases during training.</p>
 <h4 id="inferencing">Inferencing</h4>
 <p>Inference consists of a single forward propagation through the
 network. For example, in a binary classification problem, the output
 layer typically uses a sigmoid activation function, resulting in an
-output <span class="math inline">\(a^{[output]}\)</span> with shape
-<span class="math inline">\((1, 1)\)</span>. This output represents the
+output <span class="math inline">\(a^{[L]}\)</span> with shape <span
+class="math inline">\((1, 1)\)</span>. This output represents the
 predicted probability, and the neural network makes its decision based
 on this value.</p>
 </body>
