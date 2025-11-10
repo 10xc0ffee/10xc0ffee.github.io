@@ -404,9 +404,13 @@ fundamental operation in linear algebra where two matrices are combined
 to produce a new matrix. This operation is not element-wise; instead, it
 involves taking the dot product of rows from the first matrix with
 columns from the second matrix.</p>
-<p>For example, if we have a matrix $ A $ of shape $ (m, n) $ and a
-matrix $ B $ of shape $ (n, p) $, their dot product $ C = A B $ will
-have shape $ (m, p) $:</p>
+<p>For example, if we have a matrix <span
+class="math inline">\(A\)</span> of shape <span
+class="math inline">\((m, n)\)</span> and a matrix <span
+class="math inline">\(B\)</span> of shape <span
+class="math inline">\((n, p)\)</span>, their dot product <span
+class="math inline">\(C = A \cdot B\)</span> will have shape <span
+class="math inline">\((m, p)\)</span>:</p>
 <p><span class="math display">\[
 A =
 \begin{bmatrix}
@@ -420,7 +424,7 @@ b_{11} \\
 b_{21} \\
 \end{bmatrix}
 \]</span></p>
-<p>The resulting matrix $ C $ is:</p>
+<p>The resulting matrix <span class="math inline">\(C\)</span> is:</p>
 <p><span class="math display">\[
 C = A \cdot B =
 \begin{bmatrix}
@@ -456,19 +460,27 @@ that maps input features to a predicted output. The <strong>loss
 function</strong> quantifies how well the model’s predictions align with
 the actual, true outcomes.</p>
 <p>In supervised learning, each data sample comes with a known label
-(the ground truth), denoted as $ y $. The model’s output for the same
-sample is typically represented as $ $. The discrepancy between the true
+(the ground truth), denoted as <span class="math inline">\(y\)</span>.
+The model’s output for the same sample is typically represented as <span
+class="math inline">\(\hat{y}\)</span>. The discrepancy between the true
 output and the predicted output can be measured using the loss function.
-One simple example is the difference $ _{i=1}^{m} |y_i - | $, with m
+One simple example is the difference <span
+class="math inline">\(\sum_{i=1}^{m} |y_i - \hat{y_i}|\)</span>, with m
 denoted as the number of the samples. But more commonly, specific loss
 functions such as mean squared error or cross-entropy are used,
 depending on the problem type. The goal during training is to adjust the
 model parameters to minimize this loss across all examples in the
 dataset.</p>
-<p>We denote the loss function across $ m $ data samples as $ L(Y, ) $,
-where $ Y $ and $ $ are matrices of shape $ (1, m) $. Each column in $ Y
-$ represents the label (ground truth) for a data sample, while each
-corresponding column in $ $ represents the model’s prediction.</p>
+<p>We denote the loss function across <span
+class="math inline">\(m\)</span> data samples as <span
+class="math inline">\(L(Y, \hat{Y})\)</span>, where <span
+class="math inline">\(Y\)</span> and <span
+class="math inline">\(\hat{Y}\)</span> are matrices of shape <span
+class="math inline">\((1, m)\)</span>. Each column in <span
+class="math inline">\(Y\)</span> represents the label (ground truth) for
+a data sample, while each corresponding column in <span
+class="math inline">\(\hat{Y}\)</span> represents the model’s
+prediction.</p>
 <p>The <strong>mean squared error (MSE)</strong> loss is commonly used
 for regression tasks (perdict values) and can be expressed as: <span
 class="math display">\[
@@ -486,14 +498,16 @@ convex with respect to the predictions <span
 class="math inline">\(\hat{Y}\)</span>, which guarantees the existence
 of a unique global minimum for <span
 class="math inline">\(\hat{Y}\)</span>. However, the loss may not be
-convex with respect to the model parameters $ $, since <span
+convex with respect to the model parameters <span
+class="math inline">\(\theta\)</span>, since <span
 class="math inline">\(\hat{Y}\)</span> is typically a nonlinear function
-of $ $. If the relationship from $ $ to <span
+of <span class="math inline">\(\theta\)</span>. If the relationship from
+<span class="math inline">\(\theta\)</span> to <span
 class="math inline">\(\hat{Y}\)</span> is itself linear (for example, if
 the model is a linear function or a composition of linear functions),
-then the loss remains convex with respect to $ $. Otherwise,
-nonlinearity can introduce non-convexity into the optimization
-landscape.</p>
+then the loss remains convex with respect to <span
+class="math inline">\(\theta\)</span>. Otherwise, nonlinearity can
+introduce non-convexity into the optimization landscape.</p>
 <p>The <strong>cross-entropy (CE)</strong> loss is widely used for
 classification tasks, as it effectively measures the discrepancy between
 the predicted probabilities and the true class labels.</p>
@@ -515,22 +529,27 @@ probabilities for each sample, taking values between 0 and 1. Minimizing
 the cross-entropy loss pushes the model’s predictions <span
 class="math inline">\(\hat{y}_i\)</span> to align as closely as possible
 with the actual labels <span class="math inline">\(y_i\)</span>. The
-cross-entropy loss is convex with respect to $ $ because its second
-derivative (the Hessian matrix) is always positive.</p>
+cross-entropy loss is convex with respect to <span
+class="math inline">\(\hat{Y}\)</span> because its second derivative
+(the Hessian matrix) is always positive.</p>
 <h4 id="gradient-descent">Gradient Descent</h4>
 <p><strong>Gradient descent</strong> is an optimization algorithm used
 to minimize the loss function in machine learning. It works by
 iteratively moving the model parameters in the direction opposite to the
 gradient of the loss function (since this is the direction of steepest
-decrease). Specifically, we update each parameter $ $ by:</p>
+decrease). Specifically, we update each parameter <span
+class="math inline">\(\theta\)</span> by:</p>
 <p><span class="math display">\[
 \theta := \theta - \alpha \frac{\partial L}{\partial \theta}
 \]</span></p>
-<p>where $ $ is the <strong>learning rate</strong> (a hyperparameter
-that controls the size of each update step), and $ $ is the gradient of
-the loss function $ L $ with respect to the model parameter $ $. The $ $
-values represent the parameters of the machine learning model that we
-are trying to optimize.</p>
+<p>where <span class="math inline">\(\alpha\)</span> is the
+<strong>learning rate</strong> (a hyperparameter that controls the size
+of each update step), and <span class="math inline">\(\frac{\partial
+L}{\partial \theta}\)</span> is the gradient of the loss function <span
+class="math inline">\(L\)</span> with respect to the model parameter
+<span class="math inline">\(\theta\)</span>. The <span
+class="math inline">\(\theta\)</span> values represent the parameters of
+the machine learning model that we are trying to optimize.</p>
 <h4 id="second-derivatives-role-in-gradient-descent">Second Derivative’s
 Role in Gradient Descent</h4>
 <p>The second derivative is important for understanding the nature of
@@ -578,7 +597,8 @@ network applies a linear transformation to its inputs, followed by a
 non-linear activation function. This activation function injects
 non-linearity at each layer, enabling the neural network to learn
 complex patterns and solve more challenging tasks.</p>
-<p>At each layer $ l $, the linear transformation is computed as:</p>
+<p>At each layer <span class="math inline">\(l\)</span>, the linear
+transformation is computed as:</p>
 <p><span class="math display">\[
 z^{[l]} = W^{[l]}a^{[l-1]} + b^{[l]}
 \]</span></p>
@@ -712,9 +732,10 @@ layer, we first calculate the gradients of all the parameters:</p>
 <p>Inference consists of a single forward propagation through the
 network. For example, in a binary classification problem, the output
 layer typically uses a sigmoid activation function, resulting in an
-output $ a^{[output]} $ with shape <span class="math inline">\((1,
-1)\)</span>. This output represents the predicted probability, and the
-neural network makes its decision based on this value.</p>
+output <span class="math inline">\(a^{[output]}\)</span> with shape
+<span class="math inline">\((1, 1)\)</span>. This output represents the
+predicted probability, and the neural network makes its decision based
+on this value.</p>
 </body>
 </html>
 
