@@ -26,11 +26,13 @@
 <meta property="og:site_name">
 <meta property="og:description" content="dummy        &#x2F;* Default styles provided by pandoc.     ** See https:&#x2F;&#x2F;pandoc.org&#x2F;MANUAL.html#variables-for-html for config info.     *&#x2F;     html {       color: #1a1a1a;       background-">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/NerualNetworkNotation.jpg">
 <meta property="article:published_time" content="2025-11-08T18:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-10T06:39:12.775Z">
+<meta property="article:modified_time" content="2025-11-10T06:45:46.419Z">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="artifical intelligence">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/NerualNetworkNotation.jpg">
 
 
 <link rel="canonical" href="https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/">
@@ -421,27 +423,30 @@ fundamental operation in linear algebra where two matrices are combined
 to produce a new matrix. This operation is not element-wise; instead, it
 involves taking the dot product of rows from the first matrix with
 columns from the second matrix.</p>
-<p>For example, if we have a matrix ( A ) of shape ( (m, n) ) and a
-matrix ( B ) of shape ( (n, p) ), their dot product ( C = A B ) will
-have shape ( (m, p) ):</p>
-[ A =
-<span class="math display">\[\begin{bmatrix}
+<p>For example, if we have a matrix $ A $ of shape $ (m, n) $ and a
+matrix $ B $ of shape $ (n, p) $, their dot product $ C = A B $ will
+have shape $ (m, p) $:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
 a_{11} &amp; a_{12} \\
 a_{21} &amp; a_{22} \\
-\end{bmatrix}\]</span>
-, B =
-<span class="math display">\[\begin{bmatrix}
+\end{bmatrix},
+\quad
+B =
+\begin{bmatrix}
 b_{11} \\
 b_{21} \\
-\end{bmatrix}\]</span>
-<p>]</p>
-<p>The resulting matrix ( C ) is:</p>
-[ C = A B =
-<span class="math display">\[\begin{bmatrix}
+\end{bmatrix}
+\]</span></p>
+<p>The resulting matrix $ C $ is:</p>
+<p><span class="math display">\[
+C = A \cdot B =
+\begin{bmatrix}
 a_{11}b_{11} + a_{12}b_{21} \\
 a_{21}b_{11} + a_{22}b_{21} \\
-\end{bmatrix}\]</span>
-<p>]</p>
+\end{bmatrix}
+\]</span></p>
 <p>Matrix multiplication is fundamental to neural networks, serving as
 the core computation within each layer. These matrix operations are
 highly amenable to parallelization using SIMD (Single Instruction,
@@ -470,59 +475,79 @@ that maps input features to a predicted output. The <strong>loss
 function</strong> quantifies how well the model’s predictions align with
 the actual, true outcomes.</p>
 <p>In supervised learning, each data sample comes with a known label
-(the ground truth), denoted as ( y ). The model’s output for the same
-sample is typically represented as ( ). The discrepancy between the true
+(the ground truth), denoted as $ y $. The model’s output for the same
+sample is typically represented as $ $. The discrepancy between the true
 output and the predicted output can be measured using the loss function.
-One simple example is the difference ( _{i=1}^{m} |y_i - | ), with m
+One simple example is the difference $ _{i=1}^{m} |y_i - | $, with m
 denoted as the number of the samples. But more commonly, specific loss
 functions such as mean squared error or cross-entropy are used,
 depending on the problem type. The goal during training is to adjust the
 model parameters to minimize this loss across all examples in the
 dataset.</p>
-<p>We denote the loss function across ( m ) data samples as ( L(Y, ) ),
-where ( Y ) and ( ) are matrices of shape ( (1, m) ). Each column in ( Y
-) represents the label (ground truth) for a data sample, while each
-corresponding column in ( ) represents the model’s prediction.</p>
+<p>We denote the loss function across $ m $ data samples as $ L(Y, ) $,
+where $ Y $ and $ $ are matrices of shape $ (1, m) $. Each column in $ Y
+$ represents the label (ground truth) for a data sample, while each
+corresponding column in $ $ represents the model’s prediction.</p>
 <p>The <strong>mean squared error (MSE)</strong> loss is commonly used
-for regression tasks (perdict values) and can be expressed as: [ L(Y, )
-= _{i=1}^{m} (y_i - )^2 ]</p>
+for regression tasks (perdict values) and can be expressed as: <span
+class="math display">\[
+L(Y, \hat{Y}) = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y_i})^2
+\]</span></p>
 <p>Alternatively, using matrix notation:</p>
-<p>[ L(Y, ) = ]</p>
-<p>where (()) is the trace operator, which adds up the diagonal elements
-of a square matrix to produce a single scalar value. The mean squared
-error loss is convex with respect to the predictions (), which
-guarantees the existence of a unique global minimum for (). However, the
-loss may not be convex with respect to the model parameters ( ), since
-() is typically a nonlinear function of ( ). If the relationship from (
-) to () is itself linear (for example, if the model is a linear function
-or a composition of linear functions), then the loss remains convex with
-respect to ( ). Otherwise, nonlinearity can introduce non-convexity into
-the optimization landscape.</p>
+<p><span class="math display">\[
+L(Y, \hat{Y}) = \frac{1}{m} \operatorname{Tr}\left[(Y - \hat{Y}) (Y -
+\hat{Y})^T\right]
+\]</span></p>
+<p>where <span class="math inline">\(\operatorname{Tr}(\cdot)\)</span>
+is the trace operator, which adds up the diagonal elements of a square
+matrix to produce a single scalar value. The mean squared error loss is
+convex with respect to the predictions <span
+class="math inline">\(\hat{Y}\)</span>, which guarantees the existence
+of a unique global minimum for <span
+class="math inline">\(\hat{Y}\)</span>. However, the loss may not be
+convex with respect to the model parameters $ $, since <span
+class="math inline">\(\hat{Y}\)</span> is typically a nonlinear function
+of $ $. If the relationship from $ $ to <span
+class="math inline">\(\hat{Y}\)</span> is itself linear (for example, if
+the model is a linear function or a composition of linear functions),
+then the loss remains convex with respect to $ $. Otherwise,
+nonlinearity can introduce non-convexity into the optimization
+landscape.</p>
 <p>The <strong>cross-entropy (CE)</strong> loss is widely used for
 classification tasks, as it effectively measures the discrepancy between
 the predicted probabilities and the true class labels.</p>
 <p>For binary classification, the cross-entropy loss can be written
 as:</p>
-<p>[ L(Y, ) = - _{i=1}^{m} ]</p>
+<p><span class="math display">\[
+L(Y, \hat{Y}) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y_{i} \log(\hat{y}_i)
++ (1 - y_i) \log(1 - \hat{y}_i) \right]
+\]</span></p>
 <p>Alternatively, using matrix notation:</p>
-<p>[ L(Y, ) = - ]</p>
-<p>In this context, (Y) represents the true labels (usually 0 or 1),
-while () contains the predicted probabilities for each sample, taking
-values between 0 and 1. Minimizing the cross-entropy loss pushes the
-model’s predictions (_i) to align as closely as possible with the actual
-labels (y_i). The cross-entropy loss is convex with respect to ( )
-because its second derivative (the Hessian matrix) is always
-positive.</p>
+<p><span class="math display">\[
+L(Y, \hat{Y}) = -\frac{1}{m} \operatorname{Tr} \left[ Y \log(\hat{Y}^T)
++ (1 - Y) \log((1 - \hat{Y})^T) \right]
+\]</span></p>
+<p>In this context, <span class="math inline">\(Y\)</span> represents
+the true labels (usually 0 or 1), while <span
+class="math inline">\(\hat{Y}\)</span> contains the predicted
+probabilities for each sample, taking values between 0 and 1. Minimizing
+the cross-entropy loss pushes the model’s predictions <span
+class="math inline">\(\hat{y}_i\)</span> to align as closely as possible
+with the actual labels <span class="math inline">\(y_i\)</span>. The
+cross-entropy loss is convex with respect to $ $ because its second
+derivative (the Hessian matrix) is always positive.</p>
 <h4 id="gradient-descent">Gradient Descent</h4>
 <p><strong>Gradient descent</strong> is an optimization algorithm used
 to minimize the loss function in machine learning. It works by
 iteratively moving the model parameters in the direction opposite to the
 gradient of the loss function (since this is the direction of steepest
-decrease). Specifically, we update each parameter ( ) by:</p>
-<p>[ := - ]</p>
-<p>where ( ) is the <strong>learning rate</strong> (a hyperparameter
-that controls the size of each update step), and ( ) is the gradient of
-the loss function ( L ) with respect to the model parameter ( ). The ( )
+decrease). Specifically, we update each parameter $ $ by:</p>
+<p><span class="math display">\[
+\theta := \theta - \alpha \frac{\partial L}{\partial \theta}
+\]</span></p>
+<p>where $ $ is the <strong>learning rate</strong> (a hyperparameter
+that controls the size of each update step), and $ $ is the gradient of
+the loss function $ L $ with respect to the model parameter $ $. The $ $
 values represent the parameters of the machine learning model that we
 are trying to optimize.</p>
 <h4 id="second-derivatives-role-in-gradient-descent">Second Derivative’s
@@ -546,36 +571,50 @@ point.</li>
 <h2 id="neural-network-introduction">Neural Network Introduction</h2>
 <h4 id="notations">Notations</h4>
 <figure>
-<img
-src="./Neural%20Network%20and%20Deep%20Learning/NerualNetworkNotation.jpg"
-alt="Neural Network Notation" />
+<img src="./NerualNetworkNotation.jpg" alt="Neural Network Notation" />
 <figcaption aria-hidden="true">Neural Network Notation</figcaption>
 </figure>
 <p>The input to a neural network (NN) is usually represented as a column
-vector or a matrix of shape ((n_x, 1)), where each element (x_i)
+vector or a matrix of shape <span class="math inline">\((n_x,
+1)\)</span>, where each element <span class="math inline">\(x_i\)</span>
 corresponds to a specific feature. In the example above, <span
 class="math inline">\(n_x = 3\)</span>, meaning there are three input
 features, collectively forming the input layer.</p>
 <p>This network includes an input layer, three hidden layers, and an
-output layer. We denote each layer as (L^{[i]}), with (L^{[0]})
-representing the input layer and (L^{[4]}) the output layer. The term
-(n^{[l]}) refers to the number of neurons (or units) in layer (l).</p>
-<p>The input to layer (L^{[i]}) is simply the output from the previous
-layer, (L^{[i-1]}). Thus, the input for layer (l) is expressed as a
-matrix (a^{[l-1]}) with shape ((n^{[l-1]}, 1)). Each neuron in the
+output layer. We denote each layer as <span
+class="math inline">\(L^{[i]}\)</span>, with <span
+class="math inline">\(L^{[0]}\)</span> representing the input layer and
+<span class="math inline">\(L^{[4]}\)</span> the output layer. The term
+<span class="math inline">\(n^{[l]}\)</span> refers to the number of
+neurons (or units) in layer <span class="math inline">\(l\)</span>.</p>
+<p>The input to layer <span class="math inline">\(L^{[i]}\)</span> is
+simply the output from the previous layer, <span
+class="math inline">\(L^{[i-1]}\)</span>. Thus, the input for layer
+<span class="math inline">\(l\)</span> is expressed as a matrix <span
+class="math inline">\(a^{[l-1]}\)</span> with shape <span
+class="math inline">\((n^{[l-1]}, 1)\)</span>. Each neuron in the
 network applies a linear transformation to its inputs, followed by a
 non-linear activation function. This activation function injects
 non-linearity at each layer, enabling the neural network to learn
 complex patterns and solve more challenging tasks.</p>
-<p>At each layer ( l ), the linear transformation is computed as:</p>
-<p>[ z^{[l]} = W<sup>{[l]}a</sup>{[l-1]} + b^{[l]} ]</p>
-<p>Here, (W^{[l]}) represents the weights connecting layer (l-1) to
-layer (l) and typically has shape ((n^{[l]}, n^{[l-1]})). The bias
-(B^{[l]}) is generally a vector of shape ((n^{[l]}, 1)). These will make
-(z^{[l]}) a matrix of shape ((n^{[l]}, 1)).</p>
-<p>The activation for layer (l) is then calculated by applying a
-(generally nonlinear) activation function (g):</p>
-<p>[ a^{[l]} = g(z^{[l]}) ]</p>
+<p>At each layer $ l $, the linear transformation is computed as:</p>
+<p><span class="math display">\[
+z^{[l]} = W^{[l]}a^{[l-1]} + b^{[l]}
+\]</span></p>
+<p>Here, <span class="math inline">\(W^{[l]}\)</span> represents the
+weights connecting layer <span class="math inline">\(l-1\)</span> to
+layer <span class="math inline">\(l\)</span> and typically has shape
+<span class="math inline">\((n^{[l]}, n^{[l-1]})\)</span>. The bias
+<span class="math inline">\(B^{[l]}\)</span> is generally a vector of
+shape <span class="math inline">\((n^{[l]}, 1)\)</span>. These will make
+<span class="math inline">\(z^{[l]}\)</span> a matrix of shape <span
+class="math inline">\((n^{[l]}, 1)\)</span>.</p>
+<p>The activation for layer <span class="math inline">\(l\)</span> is
+then calculated by applying a (generally nonlinear) activation function
+<span class="math inline">\(g\)</span>:</p>
+<p><span class="math display">\[
+a^{[l]} = g(z^{[l]})
+\]</span></p>
 <p>A NN can be viewed as a universal function approximator. According to
 the Universal Approximation Theorem (UAT), a standard feedforward neural
 network with just one hidden layer can approximate <strong>any
@@ -589,20 +628,25 @@ surrounding continuous regions. This makes neural networks highly
 effective for real-world scenarios, where absolute precision near
 discontinuities is often not required.</p>
 <h4 id="activation-function">Activation Function</h4>
-<p>The <strong>sigmoid function</strong> produces outputs between ((0,
-1)), which makes it particularly well-suited for binary classification
-tasks. It is commonly used as the activation function in the output
-layer of neural networks when modeling probabilities. [ (x) = ]</p>
+<p>The <strong>sigmoid function</strong> produces outputs between <span
+class="math inline">\((0, 1)\)</span>, which makes it particularly
+well-suited for binary classification tasks. It is commonly used as the
+activation function in the output layer of neural networks when modeling
+probabilities. <span class="math display">\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]</span></p>
 <p>The <strong>hyperbolic tangent</strong> (tanh) function produces
-outputs in the range ((-1, 1)). It is often favored over the sigmoid in
-hidden layers because it is zero-centered—meaning its outputs have a
-mean of zero—which tends to improve convergence during training. This
-property allows gradients to flow in both positive and negative
-directions, helping different parameters update more independently. In
-contrast, the sigmoid’s outputs are always positive, potentially causing
-less efficient updates because it doesn’t allow each parameter move
-independently.</p>
-<p>[ (x) = ]</p>
+outputs in the range <span class="math inline">\((-1, 1)\)</span>. It is
+often favored over the sigmoid in hidden layers because it is
+zero-centered—meaning its outputs have a mean of zero—which tends to
+improve convergence during training. This property allows gradients to
+flow in both positive and negative directions, helping different
+parameters update more independently. In contrast, the sigmoid’s outputs
+are always positive, potentially causing less efficient updates because
+it doesn’t allow each parameter move independently.</p>
+<p><span class="math display">\[
+\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
+\]</span></p>
 <p>The <strong>Rectified Linear Unit (ReLU)</strong> activation function
 is extensively used in modern neural networks due to its simplicity,
 computational efficiency, and its role in mitigating the vanishing
@@ -622,66 +666,74 @@ helps maintain healthier distributions of activations across layers.</p>
 solve vanishing gradients and promotes sparsity in network
 representations by deactivating some neurons, which can also provide a
 form of regularization.</p>
-<p>[ (x) = (0, x) ]</p>
-However, ReLU can lead to the “dying ReLU” problem where some neurons
+<p><span class="math display">\[
+\operatorname{ReLU}(x) = \max(0, x)
+\]</span></p>
+<p>However, ReLU can lead to the “dying ReLU” problem where some neurons
 output only zero and stop learning. The <strong>Leaky ReLU</strong>
 modifies this by allowing a small, non-zero gradient when the input is
-negative: [ (x) =
-<span class="math display">\[\begin{cases}
+negative: <span class="math display">\[
+\operatorname{LeakyReLU}(x) =
+\begin{cases}
 x &amp; \text{if } x \ge 0 \\
 \alpha x &amp; \text{if } x &lt; 0
-\end{cases}\]</span>
-<p>] where () is a small positive constant (e.g., 0.01).</p>
+\end{cases}
+\]</span> where <span class="math inline">\(\alpha\)</span> is a small
+positive constant (e.g., 0.01).</p>
 <h4 id="training">Training</h4>
-<p>Training a NN involves (k) iterations of forward propogations and
-backward propogations.</p>
+<p>Training a NN involves <span class="math inline">\(k\)</span>
+iterations of forward propogations and backward propogations.</p>
 <p>A forward propogation aims to calculate the loss at the output layer
 based on the model parameters of the current layer. Then a backward
 propogation will update gradients from the output layer all the way back
 to the first layer (note that this is not input layer). Assuming there
-are (m) labeled data samples, the forward propogation can be denoted as
-the following matrix operations. We will extend the notations from “####
-Notations” section. For example, (A^{[0]}) is the labeled data samples,
-shapes a matrix of shape ((n_x, m)). Similarly, at layer 1, (Z^{[1]} =
-W<sup>{[1]}A</sup>{[0]}+B^{[1]}). To generalize it to layer (l), we
-have:</p>
-[
-<span class="math display">\[\begin{aligned}
+are <span class="math inline">\(m\)</span> labeled data samples, the
+forward propogation can be denoted as the following matrix operations.
+We will extend the notations from “#### Notations” section. For example,
+<span class="math inline">\(A^{[0]}\)</span> is the labeled data
+samples, shapes a matrix of shape <span class="math inline">\((n_x,
+m)\)</span>. Similarly, at layer 1, <span class="math inline">\(Z^{[1]}
+= W^{[1]}A^{[0]}+B^{[1]}\)</span>. To generalize it to layer <span
+class="math inline">\(l\)</span>, we have:</p>
+<p><span class="math display">\[
+\begin{aligned}
 &amp; W^{[l]}.shape = (n^{[l]}, n^{[l-1]})    \\
 &amp; A^{[l-1]}.shape = (n^{[l-1]}, m)        \\
 &amp; B^{[l]}.shape = (n^{[l]}, m)            \\
-\end{aligned}\]</span>
-<p>]</p>
-[
-<span class="math display">\[\begin{aligned}
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
 &amp; Z^{[l]} = W^{[l]}A^{[l-1]} + B^{[l]} \\
 &amp; Z^{[l]}.shape = (n^{[l]}, m)
-\end{aligned}\]</span>
-<p>]</p>
-[
-<span class="math display">\[\begin{aligned}
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
 &amp; A^{[l]} = g(Z^{[l]}) \\
 &amp; A^{[l]}.shape = (n^{[l]}, m)
-\end{aligned}\]</span>
-<p>]</p>
-<p>At each layer, the activation function (g) could be different.</p>
-<p>A backward propogation aims to tune parameters (W^{[l]}) at each
-layer (l) by applying gradient descent. Iteration from layer (l) to
-layer 1, at each layer, we first calculate the gradients of all the
-parameters:</p>
-[
-<span class="math display">\[\begin{aligned}
+\end{aligned}
+\]</span></p>
+<p>At each layer, the activation function <span
+class="math inline">\(g\)</span> could be different.</p>
+<p>A backward propogation aims to tune parameters <span
+class="math inline">\(W^{[l]}\)</span> at each layer <span
+class="math inline">\(l\)</span> by applying gradient descent. Iteration
+from layer <span class="math inline">\(l\)</span> to layer 1, at each
+layer, we first calculate the gradients of all the parameters:</p>
+<p><span class="math display">\[
+\begin{aligned}
 &amp; \frac{\partial L}{\partial W} =  \\
 &amp; \theta := \theta - \alpha \frac{\partial L}{\partial \theta}
-\end{aligned}\]</span>
-<p>]</p>
+\end{aligned}
+\]</span></p>
 <h4 id="inferencing">Inferencing</h4>
 <p>Inference consists of a single forward propagation through the
 network. For example, in a binary classification problem, the output
 layer typically uses a sigmoid activation function, resulting in an
-output ( a^{[output]} ) with shape ((1, 1)). This output represents the
-predicted probability, and the neural network makes its decision based
-on this value.</p>
+output $ a^{[output]} $ with shape <span class="math inline">\((1,
+1)\)</span>. This output represents the predicted probability, and the
+neural network makes its decision based on this value.</p>
 </body>
 </html>
 
