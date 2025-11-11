@@ -1184,7 +1184,7 @@ pre code {
   visibility: hidden;
 }
 .sidebar {
-  right: -260px;
+  right: -280px;
 }
 .sidebar-active .sidebar {
   right: 0;
@@ -1199,7 +1199,7 @@ pre code {
   top: 0;
   transition: 0.2s ease-out;
   transition-property: left, right;
-  width: 260px;
+  width: 280px;
   z-index: 20;
 }
 .sidebar a {
@@ -1221,7 +1221,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #bdddeb;
+  background: #533eff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2582,91 +2582,9 @@ header.header {
     display: none;
   }
   .sidebar-active {
-    padding-right: 260px;
+    padding-right: 280px;
   }
   .sidebar-active .footer-fixed {
-    right: 260px;
+    right: 280px;
   }
-}
-/* Make the top menu wrap to a new line instead of horizontal scrolling */
-.site-nav .menu {
-  display: flex;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  overflow: visible;
-  white-space: normal;
-}
-/* Slightly tighten menu item horizontal padding to fit more items */
-.site-nav .menu .menu-item {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-/* Ensure main content stays centered and reduce left blank feel */
-.main-inner {
-  margin-left: auto;
-  margin-right: auto;
-}
-/* Prevent header from forcing a single line when many menu items exist */
-.site-nav {
-  overflow-x: visible;
-  white-space: normal;
-}
-/* Typography: GitHub/Markdown Preview Enhanced-like system font stack */
-body,
-.post-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-  font-size: 17px;
-  line-height: 1.8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-/* Code font with ligatures support when available */
-code,
-pre,
-kbd,
-samp {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Fira Code", "DejaVu Sans Mono", monospace;
-  font-feature-settings: "calt" 1;
-  font-variant-ligatures: contextual;
-}
-pre code {
-  font-size: 0.95em;
-}
-/* Eliminate horizontal scroll from progress bar / wide widgets */
-#reading-progress,
-.reading-progress {
-  width: 100% !important;
-  left: 0;
-  right: 0;
-}
-/* Constrain third-party widgets and sidebar to viewport */
-.sidebar,
-.sidebar-inner,
-.gt-container,
-.gt-container * {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-/* Keep tables and code blocks within container */
-.post-body table {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-}
-.post-body pre {
-  max-width: 100%;
-  overflow-x: auto;
-}
-/* Global overflow guard for layout containers */
-.header-inner,
-.container,
-.main,
-.main-inner,
-.content-wrap,
-.sidebar,
-.sidebar-inner {
-  max-width: 100%;
-  overflow-x: hidden;
 }
