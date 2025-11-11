@@ -99,20 +99,6 @@
   </url>
   
   <url>
-    <loc>https://10xc0ffee.github.io/tags/storage/</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://10xc0ffee.github.io/tags/consensus/</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://10xc0ffee.github.io/tags/deep-learning/</loc>
     <lastmod>2025-11-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -128,6 +114,20 @@
   
   <url>
     <loc>https://10xc0ffee.github.io/tags/database/</loc>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://10xc0ffee.github.io/tags/storage/</loc>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://10xc0ffee.github.io/tags/consensus/</loc>
     <lastmod>2025-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

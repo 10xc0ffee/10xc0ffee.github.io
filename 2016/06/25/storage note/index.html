@@ -17,14 +17,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"10xc0ffee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"right","width_expanded":280,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"10xc0ffee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"right","width_expanded":280,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Storage System Design Considerations A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical consideration">
+    <meta name="description" content="dummy        &#x2F;* Default styles provided by pandoc.     ** See https:&#x2F;&#x2F;pandoc.org&#x2F;MANUAL.html#variables-for-html for config info.     *&#x2F;     html {       color: #1a1a1a;       background-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Storage Notes">
 <meta property="og:url" content="https://10xc0ffee.github.io/2016/06/25/storage%20note/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Storage System Design Considerations A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical consideration">
+<meta property="og:description" content="dummy        &#x2F;* Default styles provided by pandoc.     ** See https:&#x2F;&#x2F;pandoc.org&#x2F;MANUAL.html#variables-for-html for config info.     *&#x2F;     html {       color: #1a1a1a;       background-">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2016-06-25T17:00:00.000Z">
 <meta property="article:modified_time" content="2025-01-20T21:16:09.861Z">
@@ -114,7 +114,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Storage-System-Design-Considerations"><span class="nav-number">1.</span> <span class="nav-text">Storage System Design Considerations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Safety"><span class="nav-number">1.1.</span> <span class="nav-text">Data Safety</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Availability"><span class="nav-number">1.2.</span> <span class="nav-text">Availability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Performance"><span class="nav-number">1.3.</span> <span class="nav-text">Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Network-Interface-Card-NIC"><span class="nav-number">1.3.1.</span> <span class="nav-text">Network Interface Card (NIC)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Disk"><span class="nav-number">1.3.2.</span> <span class="nav-text">Disk</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Memory-Hierarchy"><span class="nav-number">1.3.3.</span> <span class="nav-text">Memory Hierarchy</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stability-Requirements"><span class="nav-number">1.4.</span> <span class="nav-text">Stability Requirements</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#storage-system-design-considerations"><span class="nav-number">1.</span> <span class="nav-text">Storage System Design
+Considerations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#data-safety"><span class="nav-number">1.1.</span> <span class="nav-text">Data Safety</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#availability"><span class="nav-number">1.2.</span> <span class="nav-text">Availability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#performance"><span class="nav-number">1.3.</span> <span class="nav-text">Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#network-interface-card-nic"><span class="nav-number">1.3.1.</span> <span class="nav-text">Network Interface Card (NIC)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#disk"><span class="nav-number">1.3.2.</span> <span class="nav-text">Disk</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#memory-hierarchy"><span class="nav-number">1.3.3.</span> <span class="nav-text">Memory Hierarchy</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stability-requirements"><span class="nav-number">1.4.</span> <span class="nav-text">Stability Requirements</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -222,31 +223,238 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="Storage-System-Design-Considerations">Storage System Design Considerations</h3>
-<p>A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical considerations: <strong>Data Safety</strong>, <strong>Performance</strong>, and <strong>Availability</strong>.</p>
-<h4 id="Data-Safety">Data Safety</h4>
-<p>Data safety is the most important aspect in most scenarios. The system must make every effort to protect user data, as any loss of data is unacceptable.</p>
-<h4 id="Availability">Availability</h4>
-<p>While availability may not always be an immediate concern, it remains essential for system stability. In modern storage systems, data is typically replicated across multiple nodes. If one node becomes unavailable, other nodes can handle requests. However, poor availability can lead to system instability, manifesting as increased latency or reduced throughput when alternate nodes are used.</p>
-<p>One of the key factors affecting availability is the speed of stopping and restarting nodes, which impacts how quickly the system can recover from failures.</p>
-<h4 id="Performance">Performance</h4>
-<p>Performance is typically measured in two dimensions: <strong>latency</strong> (how quickly a system responds) and <strong>throughput</strong> (the amount of data the system processes). Performance is the second most important consideration and is influenced by data safety and availability. Optimizing performance requires careful design choices, ranging from hardware selection to user requirements.</p>
-<h5 id="Network-Interface-Card-NIC">Network Interface Card (NIC)</h5>
-<p>The NIC is a crucial determinant of network speed, with options like 1-Gb, 10-Gb, and Infiniband affecting overall system performance. For example, with 1-Gb NICs, two approaches are commonly used for replicating data to ensure safety:</p>
-<ol>
-<li><strong>Star-Write</strong>: Sends all three replicas simultaneously from one node to others. This approach minimizes latency but can saturate the client’s bandwidth, reducing throughput.</li>
-<li><strong>Chain-Write</strong>: Sends the first replica to one node, which then forwards it to others. This approach maximizes throughput by utilizing bandwidth across multiple nodes, but it introduces higher latency due to forwarding delays.</li>
+    <div class="post-body" itemprop="articleBody"><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dummy</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<h3 id="storage-system-design-considerations">Storage System Design
+Considerations</h3>
+<p>A storage system, used to save data, is often a fundamental service
+for many backend applications. Designing a storage system involves three
+critical considerations: <strong>Data Safety</strong>,
+<strong>Performance</strong>, and <strong>Availability</strong>.</p>
+<h4 id="data-safety">Data Safety</h4>
+<p>Data safety is the most important aspect in most scenarios. The
+system must make every effort to protect user data, as any loss of data
+is unacceptable.</p>
+<h4 id="availability">Availability</h4>
+<p>While availability may not always be an immediate concern, it remains
+essential for system stability. In modern storage systems, data is
+typically replicated across multiple nodes. If one node becomes
+unavailable, other nodes can handle requests. However, poor availability
+can lead to system instability, manifesting as increased latency or
+reduced throughput when alternate nodes are used.</p>
+<p>One of the key factors affecting availability is the speed of
+stopping and restarting nodes, which impacts how quickly the system can
+recover from failures.</p>
+<h4 id="performance">Performance</h4>
+<p>Performance is typically measured in two dimensions:
+<strong>latency</strong> (how quickly a system responds) and
+<strong>throughput</strong> (the amount of data the system processes).
+Performance is the second most important consideration and is influenced
+by data safety and availability. Optimizing performance requires careful
+design choices, ranging from hardware selection to user
+requirements.</p>
+<h5 id="network-interface-card-nic">Network Interface Card (NIC)</h5>
+<p>The NIC is a crucial determinant of network speed, with options like
+1-Gb, 10-Gb, and Infiniband affecting overall system performance. For
+example, with 1-Gb NICs, two approaches are commonly used for
+replicating data to ensure safety:</p>
+<ol type="1">
+<li><strong>Star-Write</strong>: Sends all three replicas simultaneously
+from one node to others. This approach minimizes latency but can
+saturate the client’s bandwidth, reducing throughput.</li>
+<li><strong>Chain-Write</strong>: Sends the first replica to one node,
+which then forwards it to others. This approach maximizes throughput by
+utilizing bandwidth across multiple nodes, but it introduces higher
+latency due to forwarding delays.</li>
 </ol>
-<p>To mitigate these challenges, <strong>two-phase commit</strong> strategies can be employed:</p>
-<ul>
-<li><strong>Asynchronous writes</strong>: Writes are first completed asynchronously and then retried until committed.</li>
-<li><strong>Commit phase</strong>: Ensures data integrity while balancing throughput and latency.</li>
-</ul>
-<p>With the widespread adoption of 10-Gb NICs, Star-Write can now achieve both low latency and high throughput, especially when integrated with a two-phase commit model.</p>
-<h5 id="Disk">Disk</h5>
-<p>Disks are the backbone of storage systems, and their configurations—such as HDD, SSD, SAS, RAID, and combinations—can significantly influence design and performance. Each choice has trade-offs in cost, speed, and durability.</p>
-<h5 id="Memory-Hierarchy">Memory Hierarchy</h5>
-<p>Modern computer architecture relies heavily on a memory hierarchy. Efficient use of cache significantly affects performance. Cache misses introduce latency, making locality optimization critical.</p>
+<p>To mitigate these challenges, <strong>two-phase commit</strong>
+strategies can be employed: - <strong>Asynchronous writes</strong>:
+Writes are first completed asynchronously and then retried until
+committed. - <strong>Commit phase</strong>: Ensures data integrity while
+balancing throughput and latency.</p>
+<p>With the widespread adoption of 10-Gb NICs, Star-Write can now
+achieve both low latency and high throughput, especially when integrated
+with a two-phase commit model.</p>
+<h5 id="disk">Disk</h5>
+<p>Disks are the backbone of storage systems, and their
+configurations—such as HDD, SSD, SAS, RAID, and combinations—can
+significantly influence design and performance. Each choice has
+trade-offs in cost, speed, and durability.</p>
+<h5 id="memory-hierarchy">Memory Hierarchy</h5>
+<p>Modern computer architecture relies heavily on a memory hierarchy.
+Efficient use of cache significantly affects performance. Cache misses
+introduce latency, making locality optimization critical.</p>
 <p><strong>Types of Locality</strong>:</p>
 <pre><code>**Spatial Locality**: Improves by ensuring data close in memory is cached together.
 - Larger cache sizes.
@@ -256,18 +464,26 @@
 **Temporal Locality**: Improves by reusing data or instructions over time.
 - Prefetching techniques.
 - Cache replacement algorithms.
-- Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like **stagedDB** ensure proper context-switching within modules, even when cache capacity is limited.
-</code></pre>
-<p>At the microarchitecture level, out-of-order processors help tolerate instruction misses by executing subsequent instructions. Many of these techniques rely on accurate prediction, which is constrained by unpredictable data sets and request patterns. However, good predictions can yield substantial performance benefits.</p>
-<h4 id="Stability-Requirements">Stability Requirements</h4>
-<p><strong>Multitenancy</strong><br>
-When multiple customers share a storage system, ensuring fairness is critical. The system may implement priority levels to safeguard high-priority requests without starving low-priority ones. Effective multitenancy involves:</p>
-<ul>
-<li>Fine-grained controls for individual requests.</li>
-<li>End-to-end priority management across jobs and tenants.</li>
-</ul>
-<p><strong>Graceful Degradation</strong><br>
-Graceful degradation ensures that when the system approaches maximum capacity, throughput remains steady, and latency increases proportionally. This requires the system to implement throttling mechanisms to reject excessive requests gracefully.</p>
+- Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like **stagedDB** ensure proper context-switching within modules, even when cache capacity is limited.</code></pre>
+<p>At the microarchitecture level, out-of-order processors help tolerate
+instruction misses by executing subsequent instructions. Many of these
+techniques rely on accurate prediction, which is constrained by
+unpredictable data sets and request patterns. However, good predictions
+can yield substantial performance benefits.</p>
+<h4 id="stability-requirements">Stability Requirements</h4>
+<p><strong>Multitenancy</strong><br />
+When multiple customers share a storage system, ensuring fairness is
+critical. The system may implement priority levels to safeguard
+high-priority requests without starving low-priority ones. Effective
+multitenancy involves: - Fine-grained controls for individual requests.
+- End-to-end priority management across jobs and tenants.</p>
+<p><strong>Graceful Degradation</strong><br />
+Graceful degradation ensures that when the system approaches maximum
+capacity, throughput remains steady, and latency increases
+proportionally. This requires the system to implement throttling
+mechanisms to reject excessive requests gracefully.</p>
+</body>
+</html>
 
     </div>
 
