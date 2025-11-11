@@ -1184,7 +1184,7 @@ pre code {
   visibility: hidden;
 }
 .sidebar {
-  right: -280px;
+  right: -260px;
 }
 .sidebar-active .sidebar {
   right: 0;
@@ -1199,7 +1199,7 @@ pre code {
   top: 0;
   transition: 0.2s ease-out;
   transition-property: left, right;
-  width: 280px;
+  width: 260px;
   z-index: 20;
 }
 .sidebar a {
@@ -1221,7 +1221,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #a6b4ff;
+  background: #bdddeb;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -1640,6 +1640,67 @@ pre code {
   }
   50%, 70% {
     transform: scale(1.1);
+  }
+}
+@media (max-width: 567px) {
+  .main-inner {
+    padding: initial !important;
+  }
+  .posts-expand .post-header {
+    margin-bottom: 10px !important;
+  }
+  .post-block {
+    margin-top: initial !important;
+    padding: 8px 18px 8px !important;
+  }
+  .post-body h1,
+  .post-body h2,
+  .post-body h3,
+  .post-body h4,
+  .post-body h5,
+  .post-body h6 {
+    margin: 20px 0 8px;
+  }
+  .post-body .note h1,
+  .post-body .tabs .tab-content .tab-pane h1,
+  .post-body .note h2,
+  .post-body .tabs .tab-content .tab-pane h2,
+  .post-body .note h3,
+  .post-body .tabs .tab-content .tab-pane h3,
+  .post-body .note h4,
+  .post-body .tabs .tab-content .tab-pane h4,
+  .post-body .note h5,
+  .post-body .tabs .tab-content .tab-pane h5,
+  .post-body .note h6,
+  .post-body .tabs .tab-content .tab-pane h6 {
+    margin: 0 5px;
+  }
+  .post-body > p {
+    margin: 0 0 10px;
+  }
+  .post-body .note > p,
+  .post-body .tabs .tab-content .tab-pane > p {
+    padding: 0 5px;
+  }
+  .post-body img,
+  .post-body video {
+    margin-bottom: 10px !important;
+  }
+  .post-body figure:not(.highlight) figcaption {
+    margin: -5px auto 15px !important;
+  }
+  .post-body .note {
+    margin-bottom: 10px !important;
+    padding: 10px !important;
+  }
+  .post-body .tabs .tab-content .tab-pane {
+    padding: 10px 10px 0 !important;
+  }
+  .post-eof {
+    margin: 40px auto 20px !important;
+  }
+  .pagination {
+    margin-top: 40px;
   }
 }
 .back-to-top {
@@ -2521,10 +2582,10 @@ header.header {
     display: none;
   }
   .sidebar-active {
-    padding-right: 280px;
+    padding-right: 260px;
   }
   .sidebar-active .footer-fixed {
-    right: 280px;
+    right: 260px;
   }
 }
 /* Make the top menu wrap to a new line instead of horizontal scrolling */
@@ -2597,4 +2658,15 @@ pre code {
 .post-body pre {
   max-width: 100%;
   overflow-x: auto;
+}
+/* Global overflow guard for layout containers */
+.header-inner,
+.container,
+.main,
+.main-inner,
+.content-wrap,
+.sidebar,
+.sidebar-inner {
+  max-width: 100%;
+  overflow-x: hidden;
 }
