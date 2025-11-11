@@ -1221,7 +1221,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #62fa16;
+  background: #2f6c8f;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2595,54 +2595,4 @@ samp {
 }
 pre code {
   font-size: 0.95em;
-}
-/* Use full width when sidebar is hidden (home, archives, tags, categories) */
-body:not(.page-post-detail) .main-inner {
-  max-width: 100%;
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-}
-body:not(.page-post-detail) .content-wrap {
-  max-width: 960px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-/* Avoid reserving space for a non-visible sidebar */
-body:not(.page-post-detail) .sidebar {
-  display: none !important;
-}
-/* Prevent horizontal overflow and ensure containers fit viewport */
-html,
-body {
-  overflow-x: hidden;
-}
-.header-inner,
-.main-inner,
-.content-wrap {
-  box-sizing: border-box;
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-/* Sidebar should not cause horizontal scroll */
-.sidebar,
-.sidebar-inner {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-/* Keep post content and images from exceeding container width */
-.post-body,
-.post-body * {
-  box-sizing: border-box;
-}
-.post-body img,
-.post-body video,
-.post-body table,
-.post-body pre {
-  max-width: 100%;
-  width: auto;
-  overflow-x: auto;
 }
