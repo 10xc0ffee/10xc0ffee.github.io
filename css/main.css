@@ -1221,7 +1221,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #2f6c8f;
+  background: #22d7ff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2559,30 +2559,6 @@ body,
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-.post-body {
-  color: #222;
-}
-.post-body p {
-  margin: 0 0 1.1em;
-}
-.post-body li {
-  margin: 0.2em 0;
-}
-.post-body h1,
-.post-body h2,
-.post-body h3,
-.post-body h4,
-.post-body h5,
-.post-body h6 {
-  font-weight: 700;
-  line-height: 1.35;
-  margin: 1.5em 0 0.6em;
-}
-.post-body blockquote {
-  color: #555;
-  border-left: 4px solid #e5e7eb;
-  padding-left: 1em;
 }
 /* Code font with ligatures support when available */
 code,
