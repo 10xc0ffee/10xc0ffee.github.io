@@ -1221,7 +1221,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #22d7ff;
+  background: #a6b4ff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2571,4 +2571,30 @@ samp {
 }
 pre code {
   font-size: 0.95em;
+}
+/* Eliminate horizontal scroll from progress bar / wide widgets */
+#reading-progress,
+.reading-progress {
+  width: 100% !important;
+  left: 0;
+  right: 0;
+}
+/* Constrain third-party widgets and sidebar to viewport */
+.sidebar,
+.sidebar-inner,
+.gt-container,
+.gt-container * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* Keep tables and code blocks within container */
+.post-body table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.post-body pre {
+  max-width: 100%;
+  overflow-x: auto;
 }
