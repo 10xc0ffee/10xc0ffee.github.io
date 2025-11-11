@@ -1184,7 +1184,7 @@ pre code {
   visibility: hidden;
 }
 .sidebar {
-  right: -320px;
+  right: -280px;
 }
 .sidebar-active .sidebar {
   right: 0;
@@ -1199,7 +1199,7 @@ pre code {
   top: 0;
   transition: 0.2s ease-out;
   transition-property: left, right;
-  width: 320px;
+  width: 280px;
   z-index: 20;
 }
 .sidebar a {
@@ -1221,7 +1221,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #e81a7a;
+  background: #6365cf;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -1854,7 +1854,7 @@ pre code {
 }
 @media (min-width: 992px) {
   .post-body {
-    text-align: justify;
+    text-align: left;
   }
 }
 @media (max-width: 991px) {
@@ -2521,9 +2521,33 @@ header.header {
     display: none;
   }
   .sidebar-active {
-    padding-right: 320px;
+    padding-right: 280px;
   }
   .sidebar-active .footer-fixed {
-    right: 320px;
+    right: 280px;
   }
+}
+/* Make the top menu wrap to a new line instead of horizontal scrolling */
+.site-nav .menu {
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: visible;
+  white-space: normal;
+}
+/* Slightly tighten menu item horizontal padding to fit more items */
+.site-nav .menu .menu-item {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* Ensure main content stays centered and reduce left blank feel */
+.main-inner {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Prevent header from forcing a single line when many menu items exist */
+.site-nav {
+  overflow-x: visible;
+  white-space: normal;
 }
