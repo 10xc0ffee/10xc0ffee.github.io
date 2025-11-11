@@ -1221,7 +1221,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #6365cf;
+  background: #62fa16;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2550,4 +2550,99 @@ header.header {
 .site-nav {
   overflow-x: visible;
   white-space: normal;
+}
+/* Typography: GitHub/Markdown Preview Enhanced-like system font stack */
+body,
+.post-body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.post-body {
+  color: #222;
+}
+.post-body p {
+  margin: 0 0 1.1em;
+}
+.post-body li {
+  margin: 0.2em 0;
+}
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4,
+.post-body h5,
+.post-body h6 {
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 1.5em 0 0.6em;
+}
+.post-body blockquote {
+  color: #555;
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1em;
+}
+/* Code font with ligatures support when available */
+code,
+pre,
+kbd,
+samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Fira Code", "DejaVu Sans Mono", monospace;
+  font-feature-settings: "calt" 1;
+  font-variant-ligatures: contextual;
+}
+pre code {
+  font-size: 0.95em;
+}
+/* Use full width when sidebar is hidden (home, archives, tags, categories) */
+body:not(.page-post-detail) .main-inner {
+  max-width: 100%;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+body:not(.page-post-detail) .content-wrap {
+  max-width: 960px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/* Avoid reserving space for a non-visible sidebar */
+body:not(.page-post-detail) .sidebar {
+  display: none !important;
+}
+/* Prevent horizontal overflow and ensure containers fit viewport */
+html,
+body {
+  overflow-x: hidden;
+}
+.header-inner,
+.main-inner,
+.content-wrap {
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+/* Sidebar should not cause horizontal scroll */
+.sidebar,
+.sidebar-inner {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* Keep post content and images from exceeding container width */
+.post-body,
+.post-body * {
+  box-sizing: border-box;
+}
+.post-body img,
+.post-body video,
+.post-body table,
+.post-body pre {
+  max-width: 100%;
+  width: auto;
+  overflow-x: auto;
 }
