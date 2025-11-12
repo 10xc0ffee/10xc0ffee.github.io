@@ -19,17 +19,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"10xc0ffee.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":280,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Storage System Design Considerations A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical consideration">
+    <meta name="description" content="Storage System Design Considerations A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical consideratio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Storage Notes">
 <meta property="og:url" content="https://10xc0ffee.github.io/2016/06/25/storage%20note/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Storage System Design Considerations A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical consideration">
+<meta property="og:description" content="Storage System Design Considerations A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical consideratio">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2016-06-25T17:00:00.000Z">
 <meta property="article:modified_time" content="2025-01-20T21:16:09.861Z">
-<meta property="article:tag" content="storage">
 <meta property="article:tag" content="distributed system">
+<meta property="article:tag" content="storage">
 <meta name="twitter:card" content="summary">
 
 
@@ -116,8 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#storage-system-design-considerations"><span class="nav-number">1.</span> <span class="nav-text">Storage System Design
-Considerations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#data-safety"><span class="nav-number">1.1.</span> <span class="nav-text">Data Safety</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#availability"><span class="nav-number">1.2.</span> <span class="nav-text">Availability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#performance"><span class="nav-number">1.3.</span> <span class="nav-text">Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#network-interface-card-nic"><span class="nav-number">1.3.1.</span> <span class="nav-text">Network Interface Card (NIC)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#disk"><span class="nav-number">1.3.2.</span> <span class="nav-text">Disk</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#memory-hierarchy"><span class="nav-number">1.3.3.</span> <span class="nav-text">Memory Hierarchy</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stability-requirements"><span class="nav-number">1.4.</span> <span class="nav-text">Stability Requirements</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#storage-system-design-considerations"><span class="nav-number">1.</span> <span class="nav-text"> Storage System Design Considerations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#data-safety"><span class="nav-number">1.1.</span> <span class="nav-text"> Data Safety</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#availability"><span class="nav-number">1.2.</span> <span class="nav-text"> Availability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#performance"><span class="nav-number">1.3.</span> <span class="nav-text"> Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#network-interface-card-nic"><span class="nav-number">1.3.1.</span> <span class="nav-text"> Network Interface Card (NIC)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#disk"><span class="nav-number">1.3.2.</span> <span class="nav-text"> Disk</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#memory-hierarchy"><span class="nav-number">1.3.3.</span> <span class="nav-text"> Memory Hierarchy</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stability-requirements"><span class="nav-number">1.4.</span> <span class="nav-text"> Stability Requirements</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,65 +224,31 @@ Considerations</span></a><ol class="nav-child"><li class="nav-item nav-level-4">
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="storage-system-design-considerations">Storage System Design
-Considerations</h3>
-<p>A storage system, used to save data, is often a fundamental service
-for many backend applications. Designing a storage system involves three
-critical considerations: <strong>Data Safety</strong>,
-<strong>Performance</strong>, and <strong>Availability</strong>.</p>
-<h4 id="data-safety">Data Safety</h4>
-<p>Data safety is the most important aspect in most scenarios. The
-system must make every effort to protect user data, as any loss of data
-is unacceptable.</p>
-<h4 id="availability">Availability</h4>
-<p>While availability may not always be an immediate concern, it remains
-essential for system stability. In modern storage systems, data is
-typically replicated across multiple nodes. If one node becomes
-unavailable, other nodes can handle requests. However, poor availability
-can lead to system instability, manifesting as increased latency or
-reduced throughput when alternate nodes are used.</p>
-<p>One of the key factors affecting availability is the speed of
-stopping and restarting nodes, which impacts how quickly the system can
-recover from failures.</p>
-<h4 id="performance">Performance</h4>
-<p>Performance is typically measured in two dimensions:
-<strong>latency</strong> (how quickly a system responds) and
-<strong>throughput</strong> (the amount of data the system processes).
-Performance is the second most important consideration and is influenced
-by data safety and availability. Optimizing performance requires careful
-design choices, ranging from hardware selection to user
-requirements.</p>
-<h5 id="network-interface-card-nic">Network Interface Card (NIC)</h5>
-<p>The NIC is a crucial determinant of network speed, with options like
-1-Gb, 10-Gb, and Infiniband affecting overall system performance. For
-example, with 1-Gb NICs, two approaches are commonly used for
-replicating data to ensure safety:</p>
-<ol type="1">
-<li><strong>Star-Write</strong>: Sends all three replicas simultaneously
-from one node to others. This approach minimizes latency but can
-saturate the client’s bandwidth, reducing throughput.</li>
-<li><strong>Chain-Write</strong>: Sends the first replica to one node,
-which then forwards it to others. This approach maximizes throughput by
-utilizing bandwidth across multiple nodes, but it introduces higher
-latency due to forwarding delays.</li>
+    <div class="post-body" itemprop="articleBody"><h3 id="storage-system-design-considerations"><a class="markdownIt-Anchor" href="#storage-system-design-considerations"></a> Storage System Design Considerations</h3>
+<p>A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical considerations: <strong>Data Safety</strong>, <strong>Performance</strong>, and <strong>Availability</strong>.</p>
+<h4 id="data-safety"><a class="markdownIt-Anchor" href="#data-safety"></a> Data Safety</h4>
+<p>Data safety is the most important aspect in most scenarios. The system must make every effort to protect user data, as any loss of data is unacceptable.</p>
+<h4 id="availability"><a class="markdownIt-Anchor" href="#availability"></a> Availability</h4>
+<p>While availability may not always be an immediate concern, it remains essential for system stability. In modern storage systems, data is typically replicated across multiple nodes. If one node becomes unavailable, other nodes can handle requests. However, poor availability can lead to system instability, manifesting as increased latency or reduced throughput when alternate nodes are used.</p>
+<p>One of the key factors affecting availability is the speed of stopping and restarting nodes, which impacts how quickly the system can recover from failures.</p>
+<h4 id="performance"><a class="markdownIt-Anchor" href="#performance"></a> Performance</h4>
+<p>Performance is typically measured in two dimensions: <strong>latency</strong> (how quickly a system responds) and <strong>throughput</strong> (the amount of data the system processes). Performance is the second most important consideration and is influenced by data safety and availability. Optimizing performance requires careful design choices, ranging from hardware selection to user requirements.</p>
+<h5 id="network-interface-card-nic"><a class="markdownIt-Anchor" href="#network-interface-card-nic"></a> Network Interface Card (NIC)</h5>
+<p>The NIC is a crucial determinant of network speed, with options like 1-Gb, 10-Gb, and Infiniband affecting overall system performance. For example, with 1-Gb NICs, two approaches are commonly used for replicating data to ensure safety:</p>
+<ol>
+<li><strong>Star-Write</strong>: Sends all three replicas simultaneously from one node to others. This approach minimizes latency but can saturate the client’s bandwidth, reducing throughput.</li>
+<li><strong>Chain-Write</strong>: Sends the first replica to one node, which then forwards it to others. This approach maximizes throughput by utilizing bandwidth across multiple nodes, but it introduces higher latency due to forwarding delays.</li>
 </ol>
-<p>To mitigate these challenges, <strong>two-phase commit</strong>
-strategies can be employed: - <strong>Asynchronous writes</strong>:
-Writes are first completed asynchronously and then retried until
-committed. - <strong>Commit phase</strong>: Ensures data integrity while
-balancing throughput and latency.</p>
-<p>With the widespread adoption of 10-Gb NICs, Star-Write can now
-achieve both low latency and high throughput, especially when integrated
-with a two-phase commit model.</p>
-<h5 id="disk">Disk</h5>
-<p>Disks are the backbone of storage systems, and their
-configurations—such as HDD, SSD, SAS, RAID, and combinations—can
-significantly influence design and performance. Each choice has
-trade-offs in cost, speed, and durability.</p>
-<h5 id="memory-hierarchy">Memory Hierarchy</h5>
-<p>Modern computer architecture relies heavily on a memory hierarchy.
-Efficient use of cache significantly affects performance. Cache misses
-introduce latency, making locality optimization critical.</p>
+<p>To mitigate these challenges, <strong>two-phase commit</strong> strategies can be employed:</p>
+<ul>
+<li><strong>Asynchronous writes</strong>: Writes are first completed asynchronously and then retried until committed.</li>
+<li><strong>Commit phase</strong>: Ensures data integrity while balancing throughput and latency.</li>
+</ul>
+<p>With the widespread adoption of 10-Gb NICs, Star-Write can now achieve both low latency and high throughput, especially when integrated with a two-phase commit model.</p>
+<h5 id="disk"><a class="markdownIt-Anchor" href="#disk"></a> Disk</h5>
+<p>Disks are the backbone of storage systems, and their configurations—such as HDD, SSD, SAS, RAID, and combinations—can significantly influence design and performance. Each choice has trade-offs in cost, speed, and durability.</p>
+<h5 id="memory-hierarchy"><a class="markdownIt-Anchor" href="#memory-hierarchy"></a> Memory Hierarchy</h5>
+<p>Modern computer architecture relies heavily on a memory hierarchy. Efficient use of cache significantly affects performance. Cache misses introduce latency, making locality optimization critical.</p>
 <p><strong>Types of Locality</strong>:</p>
 <pre><code>**Spatial Locality**: Improves by ensuring data close in memory is cached together.
 - Larger cache sizes.
@@ -293,24 +258,18 @@ introduce latency, making locality optimization critical.</p>
 **Temporal Locality**: Improves by reusing data or instructions over time.
 - Prefetching techniques.
 - Cache replacement algorithms.
-- Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like **stagedDB** ensure proper context-switching within modules, even when cache capacity is limited.</code></pre>
-<p>At the microarchitecture level, out-of-order processors help tolerate
-instruction misses by executing subsequent instructions. Many of these
-techniques rely on accurate prediction, which is constrained by
-unpredictable data sets and request patterns. However, good predictions
-can yield substantial performance benefits.</p>
-<h4 id="stability-requirements">Stability Requirements</h4>
+- Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like **stagedDB** ensure proper context-switching within modules, even when cache capacity is limited.
+</code></pre>
+<p>At the microarchitecture level, out-of-order processors help tolerate instruction misses by executing subsequent instructions. Many of these techniques rely on accurate prediction, which is constrained by unpredictable data sets and request patterns. However, good predictions can yield substantial performance benefits.</p>
+<h4 id="stability-requirements"><a class="markdownIt-Anchor" href="#stability-requirements"></a> Stability Requirements</h4>
 <p><strong>Multitenancy</strong><br />
-When multiple customers share a storage system, ensuring fairness is
-critical. The system may implement priority levels to safeguard
-high-priority requests without starving low-priority ones. Effective
-multitenancy involves: - Fine-grained controls for individual requests.
-- End-to-end priority management across jobs and tenants.</p>
+When multiple customers share a storage system, ensuring fairness is critical. The system may implement priority levels to safeguard high-priority requests without starving low-priority ones. Effective multitenancy involves:</p>
+<ul>
+<li>Fine-grained controls for individual requests.</li>
+<li>End-to-end priority management across jobs and tenants.</li>
+</ul>
 <p><strong>Graceful Degradation</strong><br />
-Graceful degradation ensures that when the system approaches maximum
-capacity, throughput remains steady, and latency increases
-proportionally. This requires the system to implement throttling
-mechanisms to reject excessive requests gracefully.</p>
+Graceful degradation ensures that when the system approaches maximum capacity, throughput remains steady, and latency increases proportionally. This requires the system to implement throttling mechanisms to reject excessive requests gracefully.</p>
 
     </div>
 
@@ -320,8 +279,8 @@ mechanisms to reject excessive requests gracefully.</p>
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/storage/" rel="tag"># storage</a>
               <a href="/tags/distributed-system/" rel="tag"># distributed system</a>
+              <a href="/tags/storage/" rel="tag"># storage</a>
           </div>
 
         
