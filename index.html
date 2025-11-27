@@ -210,8 +210,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Recently I listened a few pod casts related to AI. One is about <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Even though the boss is trying to promote his company, the point about accelerated computing is already wide used and can potentially reshape the entire existing applications today that based on the general purpose computing makes sense to me. He also pointed the direction that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the whole software and hardware stack is being reshaped</a>. These all got me as an infra engineer. So I am planning to start a blog series to record my learning around machine learning, deep learning and AI stuff.</p>
-<p>In this post, I describe the knowledge learned from <a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning">this Coursera course</a>. I find it is beginner friendly.</p>
+          <p>Recently, I listened to a few podcasts related to AI. One was <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=651">an interview with Jason Huang</a>. Although the CEO was promoting his company, the discussion about accelerated computing—already widely used and potentially capable of reshaping many applications built on general-purpose computing—really resonated with me. He also mentioned that <a target="_blank" rel="noopener" href="https://youtu.be/pE6sw_E9Gh0?t=2060">the entire software and hardware stack is being reshaped</a>. As an infrastructure engineer, these points were especially compelling. Therefore, I am planning to start a series to record my learning and thoughts around machine learning, deep learning, and AI.</p>
+<p>In this post, I share insights gained from <a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning">this Coursera course</a>, which I found to be very beginner-friendly.</p>
 <h2 id="math-prerequisites"><a class="markdownIt-Anchor" href="#math-prerequisites"></a> Math Prerequisites</h2>
 <h4 id="matrix-dot-multiplication"><a class="markdownIt-Anchor" href="#matrix-dot-multiplication"></a> Matrix Dot Multiplication</h4>
 <p>Matrix dot multiplication (also known as matrix multiplication) is a fundamental operation in linear algebra where two matrices are combined to produce a new matrix. This operation is not element-wise; instead, it involves taking the dot product of rows from the first matrix with columns from the second matrix.</p>
@@ -773,16 +773,18 @@ Another important state of the activity is the <strong>uncertainty</strong>. For
 <h5 id="memory-hierarchy"><a class="markdownIt-Anchor" href="#memory-hierarchy"></a> Memory Hierarchy</h5>
 <p>Modern computer architecture relies heavily on a memory hierarchy. Efficient use of cache significantly affects performance. Cache misses introduce latency, making locality optimization critical.</p>
 <p><strong>Types of Locality</strong>:</p>
-<pre><code>**Spatial Locality**: Improves by ensuring data close in memory is cached together.
-- Larger cache sizes.
-- Memory indexing structures for data continuity.
-- Optimized binary layouts to improve instruction cache locality.
-
-**Temporal Locality**: Improves by reusing data or instructions over time.
-- Prefetching techniques.
-- Cache replacement algorithms.
-- Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like **stagedDB** ensure proper context-switching within modules, even when cache capacity is limited.
-</code></pre>
+<p><strong>Spatial Locality</strong>: Improves by ensuring data close in memory is cached together.</p>
+<ul>
+<li>Larger cache sizes.</li>
+<li>Memory indexing structures for data continuity.</li>
+<li>Optimized binary layouts to improve instruction cache locality.</li>
+</ul>
+<p><strong>Temporal Locality</strong>: Improves by reusing data or instructions over time.</p>
+<ul>
+<li>Prefetching techniques.</li>
+<li>Cache replacement algorithms.</li>
+<li>Modular design: Breaking requests into self-contained modules connected by queues. This design enables the system to group similar operations, improving temporal locality. Advanced implementations like <strong>stagedDB</strong> ensure proper context-switching within modules, even when cache capacity is limited.</li>
+</ul>
 <p>At the microarchitecture level, out-of-order processors help tolerate instruction misses by executing subsequent instructions. Many of these techniques rely on accurate prediction, which is constrained by unpredictable data sets and request patterns. However, good predictions can yield substantial performance benefits.</p>
 <h4 id="stability-requirements"><a class="markdownIt-Anchor" href="#stability-requirements"></a> Stability Requirements</h4>
 <p><strong>Multitenancy</strong><br />
