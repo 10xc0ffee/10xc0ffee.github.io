@@ -27,7 +27,7 @@
 <meta property="og:description" content="Storage System Design Considerations A storage system, used to save data, is often a fundamental service for many backend applications. Designing a storage system involves three critical consideratio">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2016-06-25T17:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-27T04:16:48.419Z">
+<meta property="article:modified_time" content="2025-11-27T07:47:40.297Z">
 <meta property="article:tag" content="distributed system">
 <meta property="article:tag" content="storage">
 <meta name="twitter:card" content="summary">
@@ -233,6 +233,7 @@
 <p>One of the key factors affecting availability is the speed of stopping and restarting nodes, which impacts how quickly the system can recover from failures.</p>
 <h4 id="performance"><a class="markdownIt-Anchor" href="#performance"></a> Performance</h4>
 <p>Performance is typically measured in two dimensions: <strong>latency</strong> (how quickly a system responds) and <strong>throughput</strong> (the amount of data the system processes). Performance is the second most important consideration and is influenced by data safety and availability. Optimizing performance requires careful design choices, ranging from hardware selection to user requirements.</p>
+<span id="more"></span>
 <h5 id="network-interface-card-nic"><a class="markdownIt-Anchor" href="#network-interface-card-nic"></a> Network Interface Card (NIC)</h5>
 <p>The NIC is a crucial determinant of network speed, with options like 1-Gb, 10-Gb, and Infiniband affecting overall system performance. For example, with 1-Gb NICs, two approaches are commonly used for replicating data to ensure safety:</p>
 <ol>

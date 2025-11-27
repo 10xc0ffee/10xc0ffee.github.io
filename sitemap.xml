@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://10xc0ffee.github.io/about/index.html</loc>
-    
-    <lastmod>2025-11-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://10xc0ffee.github.io/2016/06/25/storage%20note/</loc>
     
     <lastmod>2025-11-27</lastmod>
@@ -31,7 +22,16 @@
   <url>
     <loc>https://10xc0ffee.github.io/2021/06/27/Life%20Beyond%20Distributed%20Transactions:%20An%20Apostate's%20Opinion/</loc>
     
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://10xc0ffee.github.io/about/index.html</loc>
+    
+    <lastmod>2025-11-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

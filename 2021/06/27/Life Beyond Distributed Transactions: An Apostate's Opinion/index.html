@@ -27,7 +27,7 @@
 <meta property="og:description" content="Problem Statement Real-world application data grows fast. Those data will have to be repartitioned over time. Global serializability then becomes a problem. This introduces challenges in maintaining">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-27T17:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-30T18:18:47.523Z">
+<meta property="article:modified_time" content="2025-11-27T07:47:08.772Z">
 <meta property="article:tag" content="distributed system">
 <meta name="twitter:card" content="summary">
 
@@ -236,6 +236,7 @@
 </ul>
 <h2 id="pattern"><a class="markdownIt-Anchor" href="#pattern"></a> Pattern</h2>
 <p>Given these assumptions, the author proposes a design pattern for a scale-agnostic application layer.</p>
+<span id="more"></span>
 <p><strong>Entity</strong></p>
 <p>An entity is an addressable user data type where atomicity is maintained. Each entity can be identified by a unique key. The author emphasizes that data referenced by secondary and primary indices typically belong to different entities due to performance considerations (e.g., coordination costs).</p>
 <p><strong>Message</strong></p>
