@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/c0ffee.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/c0ffee.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/c0ffee.png">
+  <link rel="mask-icon" href="/images/c0ffee.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"10xc0ffee.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":280,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="今天，我想回顾一下上上周学习的深度学习相关的两门课程。这两门课程的侧重点各有不同。第一节课https:&#x2F;&#x2F;www.coursera.org&#x2F;learn&#x2F;deep-neural-network 讲了深度学习中的 hyperparameter tuning 以及各种 optimization 和 normalization 的算法。第二节课https:&#x2F;&#x2F;www.coursera.org&#x2F;learn&#x2F;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Neural Network and Deep Learning (2)">
+<meta property="og:url" content="https://10xc0ffee.github.io/DeepLearning-3.html">
+<meta property="og:site_name">
+<meta property="og:description" content="今天，我想回顾一下上上周学习的深度学习相关的两门课程。这两门课程的侧重点各有不同。第一节课https:&#x2F;&#x2F;www.coursera.org&#x2F;learn&#x2F;deep-neural-network 讲了深度学习中的 hyperparameter tuning 以及各种 optimization 和 normalization 的算法。第二节课https:&#x2F;&#x2F;www.coursera.org&#x2F;learn&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-08T18:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-28T06:37:57.578Z">
+<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="artificial intelligence">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://10xc0ffee.github.io/DeepLearning-3">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://10xc0ffee.github.io/DeepLearning-3.html","path":"DeepLearning-3.html","title":"Neural Network and Deep Learning (2)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Neural Network and Deep Learning (2) | null
+</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QSMDD3ZT3S"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-QSMDD3ZT3S","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title"></p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#data-preparation"><span class="nav-number">1.</span> <span class="nav-text"> Data preparation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#diagnose-your-model"><span class="nav-number">2.</span> <span class="nav-text"> Diagnose Your Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#evaluate-your-model"><span class="nav-number">3.</span> <span class="nav-text"> Evaluate Your Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#transfer-learning-and-multitask-learning"><span class="nav-number">4.</span> <span class="nav-text"> Transfer Learning and Multitask Learning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#normalization"><span class="nav-number">5.</span> <span class="nav-text"> Normalization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#regularization"><span class="nav-number">6.</span> <span class="nav-text"> Regularization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#optimization"><span class="nav-number">7.</span> <span class="nav-text"> Optimization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#saddle-point"><span class="nav-number">8.</span> <span class="nav-text"> Saddle Point</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hyperparameter-tuning"><span class="nav-number">9.</span> <span class="nav-text"> Hyperparameter tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#orthogonalization"><span class="nav-number">9.1.</span> <span class="nav-text"> Orthogonalization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#appendix"><span class="nav-number">10.</span> <span class="nav-text"> Appendix</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Neural Network and Deep Learning (2)
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p>今天，我想回顾一下上上周学习的深度学习相关的两门课程。这两门课程的侧重点各有不同。第一节课<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/deep-neural-network">https://www.coursera.org/learn/deep-neural-network</a> 讲了深度学习中的 hyperparameter tuning 以及各种 optimization 和 normalization 的算法。第二节课<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/machine-learning-projects%E8%AE%B2%E4%BA%86">https://www.coursera.org/learn/machine-learning-projects讲了</a> data preparation 过程中的一些技巧，包括如何划分 test, dev, training set，然后如何通过最终 training 的结果、test 的结果，还有 dev set 的结果进一步决定接下来要对自己的模型做怎样的调试。第二节课还同时阐述了一些其他常见的模型训练方法，比如 transfer learning 以及 multi-task learning。</p>
+<h1 id="data-preparation"><a class="markdownIt-Anchor" href="#data-preparation"></a> Data preparation</h1>
+<p>我想先总结一下整个 deep learning training 的流程。首先是 data preparation。在 data preparation 的过程中，数据量不足可能是非常大的一个问题，因为很多时候你并不是直接就拥有非常多的数据。在 deep learning 的架构下，你必须有足够的数据才能让模型达到比较好的效果。这个时候，特别是在一些情况下，比如说你需要视频和音频的信息，但没有办法得到足够的数据。这种情况下，有一个 technique 叫 data augmentation，通过手动或机器生成的方式做一些合成的数据。举个例子，对于图片数据，你可以通过翻转、裁剪、旋转，甚至在机器视觉场景中，人工加入一些天气效果，比如雾多的天气。通过这种人工合成的手段，可以增加数据量。在你有足够的数据量和标签的情况下，需要对整体的数据进行划分。常见的划分是 training set, dev set, test set。每个数据集有不同作用：training set 是数据量最大的一组，用来训练模型；dev set 是开发时用来快速验证训练出来的模型效果，一般不需要特别大；test set 是在 training set 和 dev set 的训练效果达到理想程度后使用，相当于验证模型是否能在未见过的数据上泛化。</p>
+<p>这里有个 tricky 的地方，就是 training set 是否需要和 dev/test set 在同一个 distribution 中。答案是不需要。很多时候你并没有足够量的 training 数据，这时你可以通过其他 source 的数据加入到 training set 中。一个例子是训练 security camera 识别人脸，如果没有足够 security camera 的数据，可以使用互联网的 image data 合并训练。但 dev/test set 不需要加入这些其他来源数据，因为训练目标是保证模型在 security camera 上表现良好，而不是在互联网数据上泛化。前提是外部数据与目标任务具有同一性，即具有可迁移特性。这个 technique 与之前提到的 transfer learning 很像：先使用某一数据训练模型，再重新训练最后几层以适应新数据。不同之处在于，迁移学习最初使用的模型数据源可能与新训练模型数据源完全不同。例如，可以使用大图像模型作为基础，再用新的猫的图像做迁移学习 (fine-tuning)，希望模型能专门识别猫的相关特性。</p>
+<h1 id="diagnose-your-model"><a class="markdownIt-Anchor" href="#diagnose-your-model"></a> Diagnose Your Model</h1>
+<p>OK，现在讲一些训练过程中 dev 和 test set 的技巧和注意事项。首先，你的训练目的，第一步是让 training set 训练出来的模型拟合 dev set，但这并不一定意味着模型可以拟合或泛化到 test set。training set 和 dev set， 以及dev set 和 test set 之间的差异可称为 variance，也就是方差，前者的不同通常意味着 training set数量不足或者对training set过拟合，此时需要增加 training 数据或者用  regularization 降低训练过程中的过拟合；后者的不同意味着模型对于 dev set过拟合，这意味着 dev set 数量不足，通常需要增加 dev set。</p>
+<p>如果训练过程中 training set 的 accuracy 很低，但 dev set 与 training set 的最终 accuracy 相似，这通常意味着模型有很多可优化的 bias。 需要与 Bayes error 对比。通常用 human error 近似 Bayes error，因为 human 在大多数场景中准确率很高，可认为 Bayes error 接近 human error。如果 human error 已经接近 dev/training error，可认为可优化 bias 基本不存在。</p>
+<p>最后，对于 training, dev, test，有两点补充。第一，可能会引入 training-dev set，使数据划分为 training set, training-dev set, dev set, test set。这是为了区分两种训练问题：</p>
+<ol>
+<li>training set error 很低，但 dev set error 高，可能是 training 数据与 dev 数据分布不同。加入 training-dev set 可通过 training set error 与 training-dev set error 判断模型是否在 training set 上训练良好。</li>
+<li>training-dev set error 与 training set 相似，但 dev set error 高，可能是 dev set 数据量不足（需要 data augmentation 增加数据量）或者 dev set 和 training set 数据分布不一样（需要在 training set 里增加和 dev set 相近的数据）。具体情况需要手动分析error examples。</li>
+</ol>
+<h1 id="evaluate-your-model"><a class="markdownIt-Anchor" href="#evaluate-your-model"></a> Evaluate Your Model</h1>
+<p>(AI: describe F1 Score, recall rate, error rate in the Appendix)</p>
+<h1 id="transfer-learning-and-multitask-learning"><a class="markdownIt-Anchor" href="#transfer-learning-and-multitask-learning"></a> Transfer Learning and Multitask Learning</h1>
+<p>第二节课也讲了一些训练技巧，比如 transfer learning 和 multitask learning。我刚提到 transfer learning。接下来讲 multitask learning。multitask learning 是在一次训练过程中完成多个 task，前提是 task 具有相同属性。例如一次训练识别图片中多个目标。在 computer vision 中常见，比如汽车、stop sign、行人等。训练结果会输出多个 output，每个 output 对应一个 category 的概率。不同于单分类问题，multitask learning 每个 category 概率不必相加为 1。</p>
+<p>需要注意 softmax，分类问题用 softmax+CrossEntropyLoss，但 multitask learning 只需 CrossEntropyLoss。<br />
+(AI: Am I correct about multitask learning 只需要用 CrossEntropyLoss?)</p>
+<p>到此，基本覆盖了 training-dev set 的细节和技巧，也包含第二节课程内容。</p>
+<p>Next, I would like to introduce some techniques for normalization, regularization, optimization, and hyperparameter tuning.</p>
+<h1 id="normalization"><a class="markdownIt-Anchor" href="#normalization"></a> Normalization</h1>
+<p>What is normalization? When you have a labeled data set, you usually do not want to use those inputs directly in your neural network, because they are usually not in good shape or distribution for training. Feeding them directly can lead to bad training results (e.g., loss cannot converge). Usually, in a neural network, we want a normal distribution (AI: Explain why in the appendix). We calculate the mean and standard deviation and normalize the data, so all dimensions are balanced. This ensures gradient descent does not step too much in one dimension and too little in another, speeding up training.</p>
+<p>Batch normalization is similar to normalization but applied at each layer. Each layer’s data may have different distributions, which can cause gradient descent issues. Batch normalization calculates the mean and standard deviation of each layer’s inputs and normalizes them after updating W and b, ensuring all layers output data with a similar distribution (AI: List Detail algorithms in the appendix).</p>
+<h1 id="regularization"><a class="markdownIt-Anchor" href="#regularization"></a> Regularization</h1>
+<p>Regularization prevents overfitting. High training accuracy but low dev/test accuracy usually indicates overfitting (AI: Is this usually happening?). Common regularization methods:</p>
+<ul>
+<li><strong>L2-regularization</strong>: adds the squared weights to the loss to prevent large weights (AI: What’s wrong about the description? Describe the formula in Appendix).</li>
+<li><strong>Dropout</strong>: randomly drops neurons during training to reduce reliance on specific neurons.</li>
+</ul>
+<h1 id="optimization"><a class="markdownIt-Anchor" href="#optimization"></a> Optimization</h1>
+<p>Optimization aims to reach minimum loss quickly. Techniques include:</p>
+<ol>
+<li><strong>Learning rate decay</strong>: gradually reduce learning rate during training to stabilize convergence.</li>
+<li><strong>Momentum</strong>: weighted average of historical gradients to reduce zigzag steps, beta usually 0.9 (AI: Describe effective sample in the Appendix).</li>
+<li><strong>RMSProp</strong>: divides gradient by a factor related to previous gradients (AI: Describe the algorithm in the Appendix).</li>
+<li><strong>Adam</strong>: combines momentum and RMSProp, using beta1 and beta2 to compute weighted averages (AI: Describe the algorithm in the Appendix).</li>
+</ol>
+<h1 id="saddle-point"><a class="markdownIt-Anchor" href="#saddle-point"></a> Saddle Point</h1>
+<p>Saddle points are points where gradient descent is slow due to very small gradients. Optimization algorithms aim to escape saddle points quickly.</p>
+<h1 id="hyperparameter-tuning"><a class="markdownIt-Anchor" href="#hyperparameter-tuning"></a> Hyperparameter tuning</h1>
+<p>Hyperparameter tuning finds optimal parameters like learning rate, hidden layers, and neurons to best fit training and dev sets and generalize to test sets.</p>
+<p>Tuning strategy:</p>
+<ul>
+<li>Focus on learning rate and network layers first.</li>
+<li>Tune optimization hyperparameters (like beta).</li>
+<li>With sufficient compute resources, search hyperparameters in parallel; otherwise, dynamically adjust based on observed loss.</li>
+<li>Sample learning rates using log scale.</li>
+<li>For hyperparameter combinations, coarse search first, then refine in promising regions.</li>
+</ul>
+<h2 id="orthogonalization"><a class="markdownIt-Anchor" href="#orthogonalization"></a> Orthogonalization</h2>
+<p>(AI: )</p>
+<h1 id="appendix"><a class="markdownIt-Anchor" href="#appendix"></a> Appendix</h1>
+<p><strong>F1 Score, Recall Rate, Error Rate:</strong></p>
+<ul>
+<li><strong>F1 Score</strong>: harmonic mean of precision and recall.</li>
+<li><strong>Recall Rate</strong>: proportion of true positives over actual positives.</li>
+<li><strong>Error Rate</strong>: proportion of incorrect predictions.</li>
+</ul>
+<p><strong>Why normalization prefers standard normal distribution:</strong></p>
+<ul>
+<li>Each dimension mean=0, std=1, balances gradient steps across dimensions.</li>
+</ul>
+<p><strong>Multitask learning loss:</strong></p>
+<ul>
+<li>Use CrossEntropyLoss for each task, then average or weight sum.</li>
+</ul>
+<p><strong>Regularization formula:</strong><br />
+[<br />
+L_{new} = L_{original} + \lambda \sum_i W_i^2<br />
+]</p>
+<p><strong>Effective sample in momentum:</strong></p>
+<ul>
+<li>Beta=0.9 considers past 1/(1-beta)=10 gradients for weighted average.</li>
+</ul>
+<p><strong>RMSProp algorithm:</strong></p>
+<ul>
+<li>Calculate moving average of squared gradients per dimension, divide gradient by sqrt of this average + epsilon.</li>
+</ul>
+<p><strong>Adam algorithm:</strong><br />
+[<br />
+m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t<br />
+]<br />
+[<br />
+v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2<br />
+]<br />
+Update with bias-corrected estimates:<br />
+[<br />
+\theta_t = \theta_{t-1} - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}<br />
+]</p>
+<p><strong>Is overfitting common?</strong></p>
+<ul>
+<li>Yes, in deep learning, especially with limited data or complex models.</li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder"></span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Don't Drink <a href="http://10xc0ffee.github.io/">C0ffee</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"client_id":"Ov23li2yAgo3qKZQAjlD","client_secret":"f0be8a2aaa1f183bd266d968866febe47de9b6ef","github_id":"10xc0ffee","admin_user":"10xc0ffee","repo":"10xc0ffee.github.io","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"8516ca169ec88cb4fcc3a2d2f5a18cff"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

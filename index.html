@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -159,7 +159,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://10xc0ffee.github.io/2025/11/08/Neural%20Network%20and%20Deep%20Learning/">
+    <link itemprop="mainEntityOfPage" href="https://10xc0ffee.github.io/2025/11/27/DeepLearning-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,111 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/08/Neural%20Network%20and%20Deep%20Learning/" class="post-title-link" itemprop="url">Neural Network and Deep Learning (1)</a>
+          <a href="/2025/11/27/DeepLearning-2/" class="post-title-link" itemprop="url">Neural Network and Deep Learning (2)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-11-27 22:36:00" itemprop="dateCreated datePublished" datetime="2025-11-27T22:36:00-08:00">2025-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/tech/" itemprop="url" rel="index"><span itemprop="name">tech</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>今天，我想回顾一下上上周学习的深度学习相关的两门课程。这两门课程的侧重点各有不同。第一节课<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/deep-neural-network">https://www.coursera.org/learn/deep-neural-network</a> 讲了深度学习中的 hyperparameter tuning 以及各种 optimization 和 normalization 的算法。第二节课<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/machine-learning-projects%E8%AE%B2%E4%BA%86">https://www.coursera.org/learn/machine-learning-projects讲了</a> data preparation 过程中的一些技巧，包括如何划分 test, dev, training set，然后如何通过最终 training 的结果、test 的结果，还有 dev set 的结果进一步决定接下来要对自己的模型做怎样的调试。第二节课还同时阐述了一些其他常见的模型训练方法，比如 transfer learning 以及 multi-task learning。</p>
+<h1 id="data-preparation"><a class="markdownIt-Anchor" href="#data-preparation"></a> Data preparation</h1>
+<p>我想先总结一下整个 deep learning training 的流程。首先是 data preparation。在 data preparation 的过程中，数据量不足可能是非常大的一个问题，因为很多时候你并不是直接就拥有非常多的数据。在 deep learning 的架构下，你必须有足够的数据才能让模型达到比较好的效果。这个时候，特别是在一些情况下，比如说你需要视频和音频的信息，但没有办法得到足够的数据。这种情况下，有一个 technique 叫 data augmentation，通过手动或机器生成的方式做一些合成的数据。举个例子，对于图片数据，你可以通过翻转、裁剪、旋转，甚至在机器视觉场景中，人工加入一些天气效果，比如雾多的天气。通过这种人工合成的手段，可以增加数据量。在你有足够的数据量和标签的情况下，需要对整体的数据进行划分。常见的划分是 training set, dev set, test set。每个数据集有不同作用：training set 是数据量最大的一组，用来训练模型；dev set 是开发时用来快速验证训练出来的模型效果，一般不需要特别大；test set 是在 training set 和 dev set 的训练效果达到理想程度后使用，相当于验证模型是否能在未见过的数据上泛化。</p>
+<p>这里有个 tricky 的地方，就是 training set 是否需要和 dev/test set 在同一个 distribution 中。答案是不需要。很多时候你并没有足够量的 training 数据，这时你可以通过其他 source 的数据加入到 training set 中。一个例子是训练 security camera 识别人脸，如果没有足够 security camera 的数据，可以使用互联网的 image data 合并训练。但 dev/test set 不需要加入这些其他来源数据，因为训练目标是保证模型在 security camera 上表现良好，而不是在互联网数据上泛化。前提是外部数据与目标任务具有同一性，即具有可迁移特性。这个 technique 与之前提到的 transfer learning 很像：先使用某一数据训练模型，再重新训练最后几层以适应新数据。不同之处在于，迁移学习最初使用的模型数据源可能与新训练模型数据源完全不同。例如，可以使用大图像模型作为基础，再用新的猫的图像做迁移学习 (fine-tuning)，希望模型能专门识别猫的相关特性。</p>
+<h1 id="diagnose-your-model"><a class="markdownIt-Anchor" href="#diagnose-your-model"></a> Diagnose Your Model</h1>
+<p>OK，现在讲一些训练过程中 dev 和 test set 的技巧和注意事项。首先，你的训练目的，第一步是让 training set 训练出来的模型拟合 dev set，但这并不一定意味着模型可以拟合或泛化到 test set。training set 和 dev set， 以及dev set 和 test set 之间的差异可称为 variance，也就是方差，前者的不同通常意味着 training set数量不足或者对training set过拟合，此时需要增加 training 数据或者用  regularization 降低训练过程中的过拟合；后者的不同意味着模型对于 dev set过拟合，这意味着 dev set 数量不足，通常需要增加 dev set。</p>
+<p>如果训练过程中 training set 的 accuracy 很低，但 dev set 与 training set 的最终 accuracy 相似，这通常意味着模型有很多可优化的 bias。 需要与 Bayes error 对比。通常用 human error 近似 Bayes error，因为 human 在大多数场景中准确率很高，可认为 Bayes error 接近 human error。如果 human error 已经接近 dev/training error，可认为可优化 bias 基本不存在。</p>
+<p>最后，对于 training, dev, test，有两点补充。第一，可能会引入 training-dev set，使数据划分为 training set, training-dev set, dev set, test set。这是为了区分两种训练问题：</p>
+<ol>
+<li>training set error 很低，但 dev set error 高，可能是 training 数据与 dev 数据分布不同。加入 training-dev set 可通过 training set error 与 training-dev set error 判断模型是否在 training set 上训练良好。</li>
+<li>training-dev set error 与 training set 相似，但 dev set error 高，可能是 dev set 数据量不足（需要 data augmentation 增加数据量）或者 dev set 和 training set 数据分布不一样（需要在 training set 里增加和 dev set 相近的数据）。具体情况需要手动分析error examples。</li>
+</ol>
+<h1 id="evaluate-your-model"><a class="markdownIt-Anchor" href="#evaluate-your-model"></a> Evaluate Your Model</h1>
+<p>(AI: describe F1 Score, recall rate, error rate in the Appendix)</p>
+<h1 id="transfer-learning-and-multitask-learning"><a class="markdownIt-Anchor" href="#transfer-learning-and-multitask-learning"></a> Transfer Learning and Multitask Learning</h1>
+<p>第二节课也讲了一些训练技巧，比如 transfer learning 和 multitask learning。我刚提到 transfer learning。接下来讲 multitask learning。multitask learning 是在一次训练过程中完成多个 task，前提是 task 具有相同属性。例如一次训练识别图片中多个目标。在 computer vision 中常见，比如汽车、stop sign、行人等。训练结果会输出多个 output，每个 output 对应一个 category 的概率。不同于单分类问题，multitask learning 每个 category 概率不必相加为 1。</p>
+<p>需要注意 softmax，分类问题用 softmax+CrossEntropyLoss，但 multitask learning 只需 CrossEntropyLoss。<br />
+(AI: Am I correct about multitask learning 只需要用 CrossEntropyLoss?)</p>
+<p>到此，基本覆盖了 training-dev set 的细节和技巧，也包含第二节课程内容。</p>
+<p>Next, I would like to introduce some techniques for normalization, regularization, optimization, and hyperparameter tuning.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/11/27/DeepLearning-2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://10xc0ffee.github.io/2025/11/08/DeepLearning-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | null">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/11/08/DeepLearning-1/" class="post-title-link" itemprop="url">Neural Network and Deep Learning (1)</a>
         </h2>
 
         <div class="post-meta-container">
@@ -261,7 +365,7 @@ a_{21}b_{11} + a_{22}b_{21} \\
 <p>In this context, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span></span> represents the true labels (usually 0 or 1), while <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>Y</mi><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{Y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9467699999999999em;vertical-align:0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9467699999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">^</span></span></span></span></span></span></span></span></span></span> contains the predicted probabilities for each sample, taking values between 0 and 1. Minimizing the cross-entropy loss pushes the model’s predictions <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>y</mi><mo>^</mo></mover><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\hat{y}_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> to align as closely as possible with the actual labels <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">y_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. The cross-entropy loss is convex with respect to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>Y</mi><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{Y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9467699999999999em;vertical-align:0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9467699999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">^</span></span></span></span></span></span></span></span></span></span> because its second derivative (the Hessian matrix) is always positive.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2025/11/08/Neural%20Network%20and%20Deep%20Learning/#more" rel="contents">
+              <a class="btn" href="/2025/11/08/DeepLearning-1/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
